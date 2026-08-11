@@ -1,0 +1,61 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { DocTable } from './foundation/docs/table';
+
+<Meta title="Introduction" />
+
+# food-community
+
+Storybook for the food-community design system.
+
+## Foundation
+
+`design.pen`에서 핸드오프된 파운데이션입니다. 아래 순서로 읽으면 됩니다.
+
+<DocTable
+  head={['페이지', '내용']}
+  rows={[
+    [<strong>Design Tokens</strong>, '토큰 아키텍처, 전체 인벤토리, 스페이싱, 사용 방법'],
+    [<strong>Color</strong>, '프리미티브 팔레트 6계열, 시맨틱 토큰, 배경 대비 검증'],
+    [<strong>Typography</strong>, 'Pretendard Variable, 10종 타입 스타일, 프리미티브 토큰'],
+    [<strong>Iconography</strong>, 'Lucide 기반 36종 아이콘 × 4크기'],
+  ]}
+/>
+
+## Components
+
+파운데이션 위에 올라가는 UI 컴포넌트입니다. `design.pen`의 UI 컴포넌트 170개가 24개 계열로 핸드오프되어 있습니다.
+
+<DocTable
+  head={['그룹', '컴포넌트']}
+  rows={[
+    [
+      <strong>Overview</strong>,
+      '.pen ↔ 코드 매핑, 변환 규칙, 설계와 다르게 구현한 부분 — 여기서 시작하세요',
+    ],
+    [<strong>Action</strong>, 'Icon, Icon Button, Button'],
+    [
+      <strong>Form</strong>,
+      'Text Field, Textarea, Checkbox, Radio, Switch, Select, Select Item, Chip, File Uploader',
+    ],
+    [<strong>Navigation</strong>, 'Top · Bottom · Tab Navigation'],
+    [<strong>Feedback</strong>, 'Spinner, Skeleton, Toast'],
+    [
+      <strong>Etc</strong>,
+      'Card, Badge, Empty State, Modal, Bottom Sheet, Menu, Menu Item',
+    ],
+  ]}
+/>
+
+각 컴포넌트의 **AllVariants** 스토리가 `.pen`의 변형 매트릭스(타입 × 상태)를 그대로 재현합니다.
+
+## 구조
+
+- Foundation and component specs live in the `*-ds-*.txt` files at the project root.
+- Stories are colocated with their components as `*.stories.tsx`.
+- Global styles come from `src/app/globals.css`, imported once in `.storybook/preview.tsx`.
+- `src/foundation/*.ts` — token data and usage notes for the catalog. Never redefines a colour value.
+- `src/foundation/docs/` — catalog MDX pages and their documentation-only renderers.
+- `src/foundation/icons.ts` — SVG paths generated from `design.pen`. Do not edit by hand.
+- `src/components/` — UI components, one file per `.pen` family, plus `index.ts` as the public surface.
+- `src/components/docs/` — the overview page, its handoff ledger (`inventory.ts`), and the regression guards.

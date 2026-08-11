@@ -1,0 +1,112 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import {
+  FontFamilyCard,
+  FontSizeTable,
+  FontWeightTable,
+  LetterSpacingTable,
+  LineHeightTable,
+  TrackingCheck,
+  TypeScale,
+} from './TypographyDocs';
+import { C, DocTable } from './table';
+
+<Meta title="Foundation/Typography" />
+
+# Typography
+
+프리미티브 토큰(크기 · 두께 · 행간)을 조합한 **10종의 타입 스타일**이 실제 사용 단위입니다. 화면에서는 프리미티브를 직접 조합하지 말고 타입 스타일을 그대로 쓰세요 — 자간과 행간을 매번 다시 지정하는 실수를 막아줍니다.
+
+## 서체
+
+Pretendard Variable 단일 가변 폰트입니다. 파일 하나로 400–700 구간을 모두 커버하므로 두께별 추가 요청이 발생하지 않습니다.
+
+<FontFamilyCard />
+
+폰트는 `globals.css`의 `@font-face`로 로드하고 `/public/fonts`에서 서빙합니다. `next/font/local`을 쓰지 않은 이유는 `@storybook/nextjs-vite`에 `next/font` mock이 없어, `layout.tsx`에서 로드한 폰트가 스토리에는 적용되지 않기 때문입니다. 이 방식은 앱과 Storybook이 동일한 URL을 참조합니다.
+
+---
+
+## 타입 스케일
+
+각 스타일은 `type-*` 유틸리티 클래스 하나로 적용됩니다. 아래 견본은 인라인 스타일이 아니라 **실제 유틸리티 클래스로 렌더**되므로, Tailwind 레이어가 깨지면 이 페이지에서 바로 드러납니다. 견본 문구는 `.pen` 컴포넌트에 있는 원문 그대로입니다.
+
+<TypeScale />
+
+```tsx
+<h1 className="type-display-md">오늘의 맛을 발견하는 순간</h1>
+<h2 className="type-heading-lg">함께 만드는 음식 이야기</h2>
+<p  className="type-body-lg">좋아하는 음식을 기록하고 이웃과 경험을 나눠보세요.</p>
+<span className="type-label-md">12분 전 업데이트</span>
+```
+
+`display`·`heading`은 행간 1.2(`tight`), `body`·`label`은 1.4(`normal`)입니다. 제목은 조밀하게, 본문은 읽기 편하게 두는 일반적인 원칙을 따릅니다.
+
+---
+
+## 프리미티브 토큰
+
+### 크기
+
+<FontSizeTable />
+
+### 두께
+
+<FontWeightTable />
+
+### 행간
+
+<LineHeightTable />
+
+### 자간
+
+<LetterSpacingTable />
+
+`.pen`은 자간을 텍스트 노드별 px 값으로 저장합니다(36px → `-0.72px`). CSS에서는 크기와 무관하게 동일 비율이 유지되도록 `em` 단위로 옮겼습니다.
+
+<TrackingCheck />
+
+---
+
+## 토큰 이식 시 주의점
+
+프리미티브 타이포그래피 토큰은 Tailwind `@theme`이 아니라 일반 CSS 변수로 선언했습니다. 디자인 파일의 이름(`font-size-300`, `font-line-height-tight`)이 Tailwind v4의 `--font-*` 네임스페이스와 충돌해, `@theme`에 넣으면 `.font-size-300 { font-family: 16px }` 같은 무의미한 유틸리티가 생성됩니다.
+
+컬러는 사정이 다릅니다. 디자인 파일의 `color-*` 이름이 Tailwind의 `--color-*` 네임스페이스와 정확히 일치하므로, 이름을 유지한 채 `@theme`에 등록해 유틸리티까지 함께 얻었습니다.
+
+<DocTable
+  head={['토큰 종류', '선언 위치', '이유']}
+  rows={[
+    [<C>color-*</C>, <C>@theme static</C>, '네임스페이스 일치 → 이름 유지 + 유틸리티 생성'],
+    [
+      <C>font-size-*, font-weight-*, font-line-height-*</C>,
+      <C>:root</C>,
+      <span>
+        <C>--font-*</C> 충돌 회피. 대신 <C>type-*</C> 유틸리티 제공
+      </span>,
+    ],
+    [
+      <C>spacing-*</C>,
+      <C>:root</C>,
+      <span>
+        <C>--spacing-*</C>에 넣으면 <C>p-8</C>이 32px→8px로 바뀜
+      </span>,
+    ],
+  ]}
+/>
+
+### Storybook 문서 페이지에서의 캐스케이드
+
+이 페이지의 견본 영역에는 `sb-unstyled` 클래스가 붙어 있습니다. Storybook 문서의 기본 타이포그래피 규칙은 **CSS 레이어 밖(unlayered)** 에 선언되어 있고, Tailwind 유틸리티는 `@layer utilities` 안에 있습니다. CSS 캐스케이드에서 **unlayered 선언이 layered 선언을 항상 이기므로**, 선택자를 아무리 구체적으로 써도 `type-*`의 `font-size`·`font-family`가 문서 스타일에 밀립니다.
+
+`sb-unstyled`는 Storybook이 제공하는 공식 이스케이프 해치입니다(문서 규칙 선택자가 `:where(p:not(…, .sb-unstyled p))` 형태로 이 클래스를 제외합니다). **제품 코드에는 영향이 없습니다** — 경쟁하는 문서 스타일이 없으므로 `type-*`가 그대로 적용됩니다.
+
+---
+
+## 검토 결과
+
+- [x] 프리미티브 토큰 명칭 확인 — `font-size-100`–`900`, `font-weight-{regular,semibold,bold}`, `font-line-height-{tight,normal}`
+- [x] 프리미티브 토큰으로 타이포그래피 렌더 — `type-*` 유틸리티가 전부 `var(--font-…)` 참조
+- [x] 공통 자간 -2% 반영 — 10종 전부 크기 × -2%와 일치 (위 표)
+- [x] `.pen` 타이포그래피 프레임 내 10종 모두 재사용 컴포넌트로 전환됨 (`Typography / display-lg` … `Typography / label-md`)
+- [ ] `font-size-900`(40px)은 토큰으로 정의되어 있으나 어떤 타입 스타일에도 매핑되지 않음 — 가이드 구조표에도 없어 그대로 두었습니다

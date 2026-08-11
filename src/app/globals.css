@@ -1,26 +1,340 @@
 @import "tailwindcss";
 
+/* ============================================================================
+   Pretendard Variable
+   Served from /public/fonts so both `next dev` and Storybook (staticDirs:
+   ["../public"]) resolve the same URL. Declared here rather than via
+   `next/font/local` because @storybook/nextjs-vite ships no next/font mock —
+   a font loaded in layout.tsx would be missing from every story.
+   ========================================================================== */
+@font-face {
+  font-family: "Pretendard Variable";
+  src: url("/fonts/PretendardVariable.woff2") format("woff2-variations");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================================================
+   COLOR TOKENS  —  mirrored 1:1 from design.pen `variables`
+   Names match the design file exactly, so designers and developers share one
+   vocabulary. Because they live in Tailwind's `--color-*` namespace, every
+   token also generates utilities: `bg-brand-500`, `text-text-default`,
+   `border-border-error`, …
+   `static` forces Tailwind to emit all of them, including tokens only ever
+   referenced as `var(--color-…)` (the docs catalog does exactly that).
+   ========================================================================== */
+@theme static {
+  /* -- Primitive · Brand ---------------------------------------------------- */
+  --color-brand-50: #fff4ed;
+  --color-brand-100: #ffe6d5;
+  --color-brand-200: #ffc9aa;
+  --color-brand-300: #ffa176;
+  --color-brand-400: #ff7947;
+  --color-brand-500: #f65a24;
+  --color-brand-600: #d93e12;
+  --color-brand-700: #b52d0d;
+  --color-brand-800: #912612;
+  --color-brand-900: #762316;
+  --color-brand-950: #401007;
+
+  /* -- Primitive · Neutral (warm grey; -0 is pure white) -------------------- */
+  --color-neutral-0: #ffffff;
+  --color-neutral-50: #fffdf9;
+  --color-neutral-100: #f8f3ed;
+  --color-neutral-200: #e9e2da;
+  --color-neutral-300: #d8d0c8;
+  --color-neutral-400: #aaa19a;
+  --color-neutral-500: #79736d;
+  --color-neutral-600: #5f5751;
+  --color-neutral-700: #4c4038;
+  --color-neutral-800: #2e2824;
+  --color-neutral-900: #1f1a17;
+  --color-neutral-950: #15110e;
+
+  /* -- Primitive · Red (error) --------------------------------------------- */
+  --color-red-50: #fff1f0;
+  --color-red-100: #ffe0dc;
+  --color-red-200: #ffc1b8;
+  --color-red-300: #ff9888;
+  --color-red-400: #f96c57;
+  --color-red-500: #e14d2a;
+  --color-red-600: #c7381d;
+  --color-red-700: #a52c18;
+  --color-red-800: #872719;
+  --color-red-900: #70251a;
+  --color-red-950: #3d0e08;
+
+  /* -- Primitive · Amber (warning) ----------------------------------------- */
+  --color-amber-50: #fffbeb;
+  --color-amber-100: #fef3c7;
+  --color-amber-200: #fde68a;
+  --color-amber-300: #fcd34d;
+  --color-amber-400: #fbbf24;
+  --color-amber-500: #f59e0b;
+  --color-amber-600: #d97706;
+  --color-amber-700: #b45309;
+  --color-amber-800: #92400e;
+  --color-amber-900: #78350f;
+  --color-amber-950: #451a03;
+
+  /* -- Primitive · Teal (success) ------------------------------------------ */
+  --color-teal-50: #f0fdfa;
+  --color-teal-100: #ccfbf1;
+  --color-teal-200: #99f6e4;
+  --color-teal-300: #5eead4;
+  --color-teal-400: #2dd4bf;
+  --color-teal-500: #14b8a6;
+  --color-teal-600: #0d9488;
+  --color-teal-700: #0f766e;
+  --color-teal-800: #115e59;
+  --color-teal-900: #134e4a;
+  --color-teal-950: #042f2e;
+
+  /* -- Primitive · Blue (information) -------------------------------------- */
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-200: #bfdbfe;
+  --color-blue-300: #93c5fd;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
+  --color-blue-800: #1e40af;
+  --color-blue-900: #1e3a8a;
+  --color-blue-950: #172554;
+
+  /* -- Primitive · Alpha --------------------------------------------------- */
+  --color-alpha-black-0: #00000000;
+  --color-alpha-black-13: #00000022;
+  --color-alpha-black-30: #0000004d;
+  --color-alpha-black-50: #00000080;
+  --color-alpha-black-54: #0000008a;
+  --color-alpha-black-72: #000000b8;
+  --color-alpha-black-95: #000000f2;
+  --color-alpha-white-0: #ffffff00;
+  --color-alpha-white-6: #ffffff10;
+  --color-alpha-white-27: #ffffff44;
+  --color-alpha-white-60: #ffffff99;
+  --color-alpha-shadow-action: #a23a1833;
+  --color-alpha-shadow-header: #4d24100a;
+  --color-alpha-shadow-navigation: #2d1a100d;
+  --color-alpha-shadow-search: #4b2a180d;
+
+  /* -- External brand · Naver ----------------------------------------------
+     design.pen `naver-*` — 지도 목업과 지역 검색 출처 표기에만 쓰는 외부
+     브랜드 고정색. 시맨틱 스케일과 섞이지 않도록 이름을 그대로 유지한다. */
+  --color-naver-green: #03c75a;
+  --color-naver-map-background: #edf1e9;
+  --color-naver-map-border: #d9ddd5;
+  --color-naver-logo-surface: #ffffff;
+  --color-naver-logo-text: #333333;
+
+  /* -- Semantic · Text ----------------------------------------------------- */
+  --color-text-default: var(--color-neutral-900);
+  --color-text-strong: var(--color-neutral-950);
+  --color-text-body: var(--color-neutral-700);
+  --color-text-secondary: var(--color-neutral-600);
+  --color-text-subtle: var(--color-neutral-500);
+  --color-text-disabled: var(--color-neutral-400);
+  --color-text-inverse: var(--color-neutral-50);
+  --color-text-brand: var(--color-brand-700);
+  --color-text-on-brand: var(--color-neutral-50);
+  --color-text-on-action: var(--color-neutral-0);
+  --color-text-on-image: var(--color-neutral-0);
+  --color-text-error: var(--color-red-700);
+  --color-text-warning: var(--color-amber-800);
+  --color-text-success: var(--color-teal-700);
+  --color-text-information: var(--color-blue-700);
+
+  /* -- Semantic · Background ----------------------------------------------- */
+  --color-background-default: var(--color-neutral-50);
+  --color-background-surface: var(--color-neutral-0);
+  --color-background-elevated: var(--color-neutral-50);
+  --color-background-subtle: var(--color-neutral-100);
+  --color-background-inverse: var(--color-neutral-900);
+  --color-background-disabled: var(--color-neutral-200);
+  --color-background-brand: var(--color-brand-700);
+  --color-background-brand-accent: var(--color-brand-500);
+  --color-background-brand-subtle: var(--color-brand-50);
+  --color-background-error: var(--color-red-50);
+  --color-background-warning: var(--color-amber-50);
+  --color-background-success: var(--color-teal-50);
+  --color-background-information: var(--color-blue-50);
+  --color-background-image-placeholder: var(--color-neutral-300);
+  --color-background-image-placeholder-warm: var(--color-brand-100);
+  --color-background-transparent: var(--color-alpha-white-0);
+
+  /* -- Semantic · Border --------------------------------------------------- */
+  --color-border-default: var(--color-neutral-200);
+  --color-border-strong: var(--color-neutral-400);
+  --color-border-disabled: var(--color-neutral-200);
+  --color-border-brand: var(--color-brand-500);
+  --color-border-focus: var(--color-blue-500);
+  --color-border-error: var(--color-red-500);
+  --color-border-error-subtle: var(--color-red-200);
+  --color-border-warning: var(--color-amber-500);
+  --color-border-success: var(--color-teal-500);
+  --color-border-information: var(--color-blue-500);
+
+  /* -- Semantic · Overlay -------------------------------------------------- */
+  --color-overlay-transparent: var(--color-alpha-black-0);
+  --color-overlay-dark-subtle: var(--color-alpha-black-13);
+  --color-overlay-dark-medium: var(--color-alpha-black-30);
+  --color-overlay-dark-50: var(--color-alpha-black-50);
+  --color-overlay-dark-heavy: var(--color-alpha-black-54);
+  --color-overlay-dark-strong: var(--color-alpha-black-72);
+  --color-overlay-dark-max: var(--color-alpha-black-95);
+  --color-overlay-light-subtle: var(--color-alpha-white-6);
+  --color-overlay-light-medium: var(--color-alpha-white-27);
+  --color-overlay-light-strong: var(--color-alpha-white-60);
+
+  /* -- Semantic · Shadow --------------------------------------------------- */
+  --color-shadow-action: var(--color-alpha-shadow-action);
+  --color-shadow-header: var(--color-alpha-shadow-header);
+  --color-shadow-navigation: var(--color-alpha-shadow-navigation);
+  --color-shadow-search: var(--color-alpha-shadow-search);
+
+  /* -- Font family --------------------------------------------------------- */
+  /* The design token is `font-family`; it lives in Tailwind's family namespace
+     as `--font-sans` so `font-sans` and the default body font both resolve. */
+  --font-sans: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+
+/* ============================================================================
+   TYPOGRAPHY & SPACING TOKENS  —  also mirrored 1:1 from design.pen
+   Deliberately plain custom properties rather than `@theme` entries: the
+   design-file names (`font-size-300`, `spacing-32`) collide with Tailwind's
+   own `--font-*` / `--spacing-*` namespaces, where they would emit nonsense
+   utilities and silently redefine `p-8`. Keeping them here preserves the
+   design vocabulary while leaving Tailwind's native scales intact.
+   ========================================================================== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-family: var(--font-sans);
+
+  --font-size-100: 12px;
+  --font-size-200: 14px;
+  --font-size-300: 16px;
+  --font-size-400: 20px;
+  --font-size-500: 24px;
+  --font-size-600: 28px;
+  --font-size-700: 32px;
+  --font-size-800: 36px;
+  --font-size-900: 40px;
+
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --font-line-height-tight: 1.2;
+  --font-line-height-normal: 1.4;
+
+  /* The guide's common -2% tracking. Stored in the .pen per text node as a
+     computed px value (e.g. -0.72px at 36px); -0.02em is the size-agnostic
+     equivalent. */
+  --font-letter-spacing-tight: -0.02em;
+
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ============================================================================
+   TYPE STYLES
+   The 10 composite styles are the developer-facing typography API — use these
+   rather than assembling raw size/weight/line-height tokens by hand.
+   ========================================================================== */
+@utility type-display-lg {
+  font-family: var(--font-family);
+  font-size: var(--font-size-800);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--font-line-height-tight);
+  letter-spacing: var(--font-letter-spacing-tight);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@utility type-display-md {
+  font-family: var(--font-family);
+  font-size: var(--font-size-700);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--font-line-height-tight);
+  letter-spacing: var(--font-letter-spacing-tight);
 }
 
+@utility type-display-sm {
+  font-family: var(--font-family);
+  font-size: var(--font-size-600);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--font-line-height-tight);
+  letter-spacing: var(--font-letter-spacing-tight);
+}
+
+@utility type-heading-lg {
+  font-family: var(--font-family);
+  font-size: var(--font-size-500);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--font-line-height-tight);
+  letter-spacing: var(--font-letter-spacing-tight);
+}
+
+@utility type-heading-md {
+  font-family: var(--font-family);
+  font-size: var(--font-size-400);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--font-line-height-tight);
+  letter-spacing: var(--font-letter-spacing-tight);
+}
+
+@utility type-heading-sm {
+  font-family: var(--font-family);
+  font-size: var(--font-size-300);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--font-line-height-tight);
+  letter-spacing: var(--font-letter-spacing-tight);
+}
+
+@utility type-body-lg {
+  font-family: var(--font-family);
+  font-size: var(--font-size-300);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-normal);
+  letter-spacing: var(--font-letter-spacing-tight);
+}
+
+@utility type-body-md {
+  font-family: var(--font-family);
+  font-size: var(--font-size-200);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-normal);
+  letter-spacing: var(--font-letter-spacing-tight);
+}
+
+@utility type-label-lg {
+  font-family: var(--font-family);
+  font-size: var(--font-size-200);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--font-line-height-normal);
+  letter-spacing: var(--font-letter-spacing-tight);
+}
+
+@utility type-label-md {
+  font-family: var(--font-family);
+  font-size: var(--font-size-100);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-normal);
+  letter-spacing: var(--font-letter-spacing-tight);
+}
+
+/* ============================================================================
+   BASE
+   design.pen defines a single light theme, so there is no dark-mode override:
+   a `prefers-color-scheme` flip would resolve to colours outside the token set.
+   ========================================================================== */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background-default);
+  color: var(--color-text-default);
+  font-family: var(--font-family);
 }
