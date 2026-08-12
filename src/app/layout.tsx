@@ -1,9 +1,24 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
+
+import { appleStartupImages } from "@/lib/pwa-splash";
+import { AppPwaInstallBanner } from "./_components/pwa-install-banner";
 
 export const metadata: Metadata = {
   title: "구로 맛집 지도",
   description: "구로 이웃이 직접 다녀온 숨은 맛집을 사진과 지도로 만나보세요.",
+  // iOS 홈 화면 설치(standalone) + 기기별 스플래시. 안드로이드 스플래시는
+  // manifest.ts(배경색·512 아이콘)로 자동 생성된다.
+  appleWebApp: {
+    capable: true,
+    title: "구로 맛집 지도",
+    statusBarStyle: "default",
+    startupImage: appleStartupImages,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
@@ -17,7 +32,10 @@ export default function RootLayout({
   // 한해 무시한다. 자식 요소의 불일치는 여전히 경고된다.
   return (
     <html lang="ko" className="h-full antialiased" suppressHydrationWarning>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <AppPwaInstallBanner />
+      </body>
     </html>
   );
 }

@@ -83,6 +83,11 @@ export {
   type NaverMapVariant,
 } from './NaverMap';
 export { AddressRow, type AddressRowProps } from './AddressRow';
+export {
+  PwaInstallBanner,
+  PwaInstallIosGuide,
+  type PwaInstallBannerProps,
+} from './PwaInstallBanner';
 export { Modal, type ModalProps } from './Modal';
 export { BottomSheet, type BottomSheetProps } from './BottomSheet';
 export {
