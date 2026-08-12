@@ -33,6 +33,16 @@ export default function RootLayout({
   return (
     <html lang="ko" className="h-full antialiased" suppressHydrationWarning>
       <body className="min-h-full flex flex-col">
+        {/* 크롬은 beforeinstallprompt를 하이드레이션보다 먼저 쏠 수 있어, 리액트가
+            뜨기 전에 이벤트를 붙잡아 두지 않으면 설치 배너가 영영 못 뜬다.
+            next/script(beforeInteractive)는 런타임 청크 로드 후에야 인라인
+            코드를 실행하므로, HTML 파싱 즉시 실행되는 원시 script를 쓴다.
+            소비는 _components/pwa-install-banner.tsx가 한다. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();window.__pwaInstallPrompt=e;window.dispatchEvent(new Event('pwa:install-prompt-captured'));});`,
+          }}
+        />
         {children}
         <AppPwaInstallBanner />
       </body>
