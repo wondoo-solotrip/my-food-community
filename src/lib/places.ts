@@ -10,6 +10,11 @@
  */
 export const ADDRESS_PENDING = '등록 대기중';
 
+/** 카드류 주소 표기 — 앞 두 단어(시·도 단위)까지만. 예: `경기도 안산시`. */
+export function shortAddress(address: string): string {
+  return address.split(' ').slice(0, 2).join(' ');
+}
+
 /** GET /api/places 목록 항목. 대표 이미지는 첫 번째 사진이다. */
 export interface PlaceSummary {
   id: string;

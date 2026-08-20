@@ -16,8 +16,10 @@ export const ADDRESS_MAX = 200
 /**
  * 테이블에는 스토리지 파일 경로만 저장한다. 공개 URL은 서버 전용 환경변수
  * SUPABASE_STORAGE_URL로 조립해 내려주므로 클라이언트는 주소를 알 필요가 없다.
+ * 수업용 시드는 외부 실사진(절대 URL)을 그대로 저장하므로 그 경우 통과시킨다.
  */
 export function toImageUrl(imagePath: string): string {
+  if (imagePath.startsWith('http')) return imagePath
   return `${process.env.SUPABASE_STORAGE_URL}/${BUCKET}/${imagePath}`
 }
 
@@ -88,15 +90,15 @@ export function parseFields(
   const lat = parseCoordinate(formData.get('lat'), 90)
   const lng = parseCoordinate(formData.get('lng'), 180)
 
-  if (!title) return { error: '맛집 이름을 입력해주세요.' }
+  if (!title) return { error: '제목을 입력해주세요.' }
   if (title.length > TITLE_MAX) {
-    return { error: `맛집 이름은 ${TITLE_MAX}자 이하로 입력해주세요.` }
+    return { error: `제목은 ${TITLE_MAX}자 이하로 입력해주세요.` }
   }
   if (content.length < CONTENT_MIN) {
-    return { error: `맛집 내용을 ${CONTENT_MIN}자 이상 입력해주세요.` }
+    return { error: `내용을 ${CONTENT_MIN}자 이상 입력해주세요.` }
   }
   if (content.length > CONTENT_MAX) {
-    return { error: `맛집 내용은 ${CONTENT_MAX}자 이하로 입력해주세요.` }
+    return { error: `내용은 ${CONTENT_MAX}자 이하로 입력해주세요.` }
   }
   if (!name) return { error: '지도에서 장소를 입력해주세요.' }
   if (name.length > PLACE_NAME_MAX) {

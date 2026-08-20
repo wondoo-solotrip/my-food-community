@@ -34,6 +34,11 @@ export interface TextareaProps
   /** Renders `{value.length} / {maxLength}` under the box. */
   showCounter?: boolean;
   maxLength?: number;
+  /**
+   * `false`면 포커스 시 파란 테두리 강조를 끈다 — TextField의 `focusRing`과
+   * 같은 규칙. Default `true`.
+   */
+  focusRing?: boolean;
 }
 
 export function Textarea({
@@ -43,6 +48,7 @@ export function Textarea({
   errorMessage,
   showCounter = false,
   maxLength = 500,
+  focusRing = true,
   className,
   id,
   value,
@@ -67,7 +73,7 @@ export function Textarea({
         className={cn(
           'h-24 rounded-xl p-3',
           FIELD_BOX[state],
-          state === 'default' && FIELD_BOX_FOCUS_WITHIN,
+          state === 'default' && focusRing && FIELD_BOX_FOCUS_WITHIN,
         )}
       >
         <textarea

@@ -11,6 +11,8 @@ const nextConfig: NextConfig = {
         hostname: '**.supabase.co',
         pathname: '/storage/v1/object/public/**',
       },
+      // 수업용 시드 이미지 — Unsplash 실사진을 그대로 쓴다.
+      { protocol: 'https', hostname: 'images.unsplash.com' },
     ],
   },
 };

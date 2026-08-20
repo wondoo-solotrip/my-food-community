@@ -46,6 +46,11 @@ export interface TextFieldProps
    * 동작이 필요한 자리. `trailingIcon`(장식)과 동시에 쓰면 이쪽이 우선한다.
    */
   trailingAction?: { icon: string; label: string; onClick: () => void };
+  /**
+   * `false`면 포커스 시 파란 테두리 강조를 끈다 — 메인 검색창처럼 조용히
+   * 머물러야 하는 필드용. Default `true`.
+   */
+  focusRing?: boolean;
 }
 
 export function TextField({
@@ -59,6 +64,7 @@ export function TextField({
   leadingIcon,
   trailingIcon,
   trailingAction,
+  focusRing = true,
   className,
   id,
   ...rest
@@ -88,7 +94,7 @@ export function TextField({
           'flex items-center gap-2 rounded-xl px-3',
           FIELD_HEIGHT[size],
           FIELD_BOX[state],
-          state === 'default' && FIELD_BOX_FOCUS_WITHIN,
+          state === 'default' && focusRing && FIELD_BOX_FOCUS_WITHIN,
         )}
       >
         {leadingIcon && (

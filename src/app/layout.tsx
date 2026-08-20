@@ -19,6 +19,13 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#ffffff",
+  // 앱처럼 쓰이는 화면이라 핀치·더블탭 줌을 막는다(제품 결정).
+  // iOS Safari 브라우저 탭에서는 무시될 수 있지만 홈 화면 설치(standalone)
+  // 상태에서는 적용된다.
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({

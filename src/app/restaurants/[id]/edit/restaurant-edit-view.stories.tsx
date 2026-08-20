@@ -35,7 +35,7 @@ export const Default: Story = {};
 
 export const Content: Story = {
   play: async ({ canvas }) => {
-    await expect(canvas.getByLabelText('맛집 이름')).toHaveValue('골목 끝 화덕 생선구이');
+    await expect(canvas.getByLabelText('제목')).toHaveValue('골목 끝 화덕 생선구이');
     await expect(canvas.getByRole('button', { name: '수정하기' })).toBeEnabled();
     // 새 사진을 고르지 않으면 기존 사진이 유지된다는 안내가 보인다.
     await expect(canvas.getByText(/기존 사진 1장 유지/)).toBeVisible();

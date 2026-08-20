@@ -1,518 +1,6 @@
 {
-  "version": "2.15",
+  "version": "2.17",
   "children": [
-    {
-      "type": "frame",
-      "id": "nouDS",
-      "x": 54,
-      "y": 6312,
-      "name": "01 Main Page",
-      "clip": true,
-      "width": 360,
-      "fill": "$color-background-default",
-      "layout": "vertical",
-      "children": [
-        {
-          "type": "frame",
-          "id": "B3tZi",
-          "name": "Status Bar",
-          "width": "fill_container",
-          "height": 62,
-          "padding": [
-            0,
-            "$spacing-20"
-          ],
-          "justifyContent": "space_between",
-          "alignItems": "center",
-          "children": [
-            {
-              "id": "JX4Mv",
-              "type": "ref",
-              "ref": "lSl6h",
-              "name": "Status Time / Typography heading-sm",
-              "content": "9:20",
-              "fill": "$color-text-default",
-              "textGrowth": "auto"
-            },
-            {
-              "type": "frame",
-              "id": "Gviwb",
-              "name": "Status Icons",
-              "gap": "$spacing-8",
-              "alignItems": "center",
-              "children": [
-                {
-                  "id": "WqquF",
-                  "type": "ref",
-                  "ref": "pgiUK",
-                  "name": "Status Signal / Icon Component",
-                  "width": 18,
-                  "height": 18,
-                  "fill": "$color-text-strong"
-                },
-                {
-                  "id": "T4HkEc",
-                  "type": "ref",
-                  "ref": "hl5sH",
-                  "name": "Status Wifi / Closest Refresh Icon",
-                  "width": 18,
-                  "height": 18,
-                  "fill": "$color-text-strong"
-                },
-                {
-                  "id": "d8V32",
-                  "type": "ref",
-                  "ref": "D1kEd",
-                  "name": "Status Battery / Closest Notification Icon",
-                  "width": 22,
-                  "height": 22,
-                  "fill": "$color-text-strong"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "vTfpQ",
-          "name": "Main Content",
-          "width": "fill_container",
-          "layout": "vertical",
-          "gap": "$spacing-24",
-          "padding": [
-            "$spacing-8",
-            "$spacing-16",
-            "$spacing-16",
-            "$spacing-16"
-          ],
-          "children": [
-            {
-              "type": "frame",
-              "id": "s3DX7",
-              "name": "Main Logo Area",
-              "width": "fill_container",
-              "gap": "$spacing-12",
-              "padding": [
-                "$spacing-8",
-                4
-              ],
-              "alignItems": "center",
-              "children": [
-                {
-                  "id": "ObCH1",
-                  "type": "ref",
-                  "ref": "R4efF",
-                  "name": "Main Logo Mark / Brand Icon Button Component",
-                  "width": 40,
-                  "height": 40,
-                  "descendants": {
-                    "aVtTM": {
-                      "id": "YyenB",
-                      "type": "ref",
-                      "ref": "mM2Mb",
-                      "name": "Main Logo Image Icon / 20",
-                      "width": 20,
-                      "height": 20,
-                      "fill": "$color-text-on-brand"
-                    }
-                  }
-                },
-                {
-                  "type": "frame",
-                  "id": "Kfmka",
-                  "name": "Main Logo Copy",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 2,
-                  "children": [
-                    {
-                      "id": "NFgzc",
-                      "type": "ref",
-                      "ref": "WeeHe",
-                      "name": "Main Logo Wordmark / Typography heading-md",
-                      "content": "구로 맛집 지도",
-                      "fill": "$color-text-strong"
-                    },
-                    {
-                      "id": "ioI88",
-                      "type": "ref",
-                      "ref": "V7sCMw",
-                      "name": "Main Logo Tagline / Typography label-md",
-                      "content": "이번 주말, 어디 가볼까?",
-                      "fill": "$color-text-secondary"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": "xCa3W",
-              "type": "ref",
-              "ref": "TMMeh",
-              "name": "Main Search / Text Field Component",
-              "width": "fill_container",
-              "descendants": {
-                "Ix8Ma": {
-                  "enabled": false
-                },
-                "vYpEy": {
-                  "height": 48,
-                  "padding": [
-                    0,
-                    "$spacing-16"
-                  ]
-                },
-                "e3XFNT": {
-                  "content": "가족 외식, 주차 가능, 조용한 골목",
-                  "fill": "$color-text-subtle"
-                },
-                "MNhwB": {
-                  "enabled": false
-                },
-                "z47Lz": {
-                  "type": "frame",
-                  "id": "tQmxH",
-                  "x": 0,
-                  "y": 0,
-                  "name": "Search Helper Hidden",
-                  "enabled": false,
-                  "width": 0,
-                  "height": 0
-                }
-              }
-            },
-            {
-              "type": "frame",
-              "id": "diJqb",
-              "name": "Trending Section Header",
-              "width": "fill_container",
-              "justifyContent": "space_between",
-              "alignItems": "center",
-              "children": [
-                {
-                  "id": "ns7sd",
-                  "type": "ref",
-                  "ref": "K7uBDb",
-                  "name": "Trending Title / Typography heading-lg",
-                  "content": "오늘의 숨은 맛집",
-                  "fill": "$color-text-default",
-                  "textGrowth": "auto"
-                },
-                {
-                  "id": "zoMIy",
-                  "type": "ref",
-                  "ref": "I4De0F",
-                  "name": "Trending Count / Typography label-lg",
-                  "content": "12곳",
-                  "fill": "$color-text-brand",
-                  "textGrowth": "auto"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "g1Cks",
-              "name": "Restaurant Poster Grid",
-              "width": "fill_container",
-              "fill": "$color-background-transparent",
-              "layout": "vertical",
-              "gap": "$spacing-20",
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "I0UFM",
-                  "name": "Poster Card Row",
-                  "width": "fill_container",
-                  "gap": "$spacing-16",
-                  "children": [
-                    {
-                      "id": "PLhQ4",
-                      "type": "ref",
-                      "ref": "k18ub",
-                      "name": "Restaurant Card / 골목 끝 화덕 생선구이",
-                      "width": "fill_container",
-                      "descendants": {
-                        "ubIkr": {
-                          "height": 132,
-                          "children": [
-                            {
-                              "type": "rectangle",
-                              "id": "ww1Dy",
-                              "x": 0,
-                              "y": 0,
-                              "name": "Editorial Photo / Charcoal Grilled Fish",
-                              "fill": {
-                                "type": "image",
-                                "enabled": true,
-                                "url": "images/generated-1785377851525.png",
-                                "mode": "fill"
-                              },
-                              "width": 156,
-                              "height": 132
-                            }
-                          ]
-                        },
-                        "BXBez": {
-                          "gap": "$spacing-8",
-                          "padding": "$spacing-12"
-                        },
-                        "S81a6": {
-                          "content": "골목 끝 화덕..."
-                        },
-                        "qnNvi": {
-                          "type": "frame",
-                          "id": "iGynC",
-                          "x": 0,
-                          "y": 0,
-                          "name": "Card Description Hidden",
-                          "enabled": false,
-                          "width": 0,
-                          "height": 0
-                        },
-                        "YQT4k": {
-                          "gap": "$spacing-8"
-                        },
-                        "X6FvJ4": {
-                          "content": "주차장 뒤편 작은 문",
-                          "textGrowth": "fixed-width",
-                          "width": 108
-                        }
-                      }
-                    },
-                    {
-                      "id": "Xse52",
-                      "type": "ref",
-                      "ref": "k18ub",
-                      "name": "Restaurant Card / 시장 안쪽 손칼국수",
-                      "width": "fill_container",
-                      "descendants": {
-                        "ubIkr": {
-                          "height": 132,
-                          "children": [
-                            {
-                              "type": "rectangle",
-                              "id": "VRPpp",
-                              "x": 0,
-                              "y": 0,
-                              "name": "Editorial Photo / Hand-cut Noodle Soup",
-                              "fill": {
-                                "type": "image",
-                                "enabled": true,
-                                "url": "images/generated-1785377795977.png",
-                                "mode": "fill"
-                              },
-                              "width": 156,
-                              "height": 132
-                            }
-                          ]
-                        },
-                        "BXBez": {
-                          "gap": "$spacing-8",
-                          "padding": "$spacing-12"
-                        },
-                        "S81a6": {
-                          "content": "시장 안쪽 손칼국수"
-                        },
-                        "qnNvi": {
-                          "type": "frame",
-                          "id": "iVDwO",
-                          "x": 0,
-                          "y": 0,
-                          "name": "Card Description Hidden",
-                          "enabled": false,
-                          "width": 0,
-                          "height": 0
-                        },
-                        "YQT4k": {
-                          "gap": "$spacing-8"
-                        },
-                        "X6FvJ4": {
-                          "content": "구로시장",
-                          "textGrowth": "fixed-width",
-                          "width": 108
-                        }
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "RqCH5",
-                  "name": "Poster Card Row",
-                  "width": "fill_container",
-                  "gap": "$spacing-16",
-                  "children": [
-                    {
-                      "id": "v6odKC",
-                      "type": "ref",
-                      "ref": "k18ub",
-                      "name": "Restaurant Card / 밤길 와인 식탁",
-                      "width": "fill_container",
-                      "descendants": {
-                        "ubIkr": {
-                          "height": 132,
-                          "children": [
-                            {
-                              "type": "rectangle",
-                              "id": "yVet6",
-                              "x": 0,
-                              "y": 0,
-                              "name": "Editorial Photo / Intimate Wine Table",
-                              "fill": {
-                                "type": "image",
-                                "enabled": true,
-                                "url": "images/generated-1785377795832.png",
-                                "mode": "fill"
-                              },
-                              "width": 156,
-                              "height": 132
-                            }
-                          ]
-                        },
-                        "BXBez": {
-                          "gap": "$spacing-8",
-                          "padding": "$spacing-12"
-                        },
-                        "S81a6": {
-                          "content": "밤길 와인 식탁"
-                        },
-                        "qnNvi": {
-                          "type": "frame",
-                          "id": "CR8G6",
-                          "x": 0,
-                          "y": 0,
-                          "name": "Card Description Hidden",
-                          "enabled": false,
-                          "width": 0,
-                          "height": 0
-                        },
-                        "YQT4k": {
-                          "gap": "$spacing-8"
-                        },
-                        "X6FvJ4": {
-                          "content": "고척동",
-                          "textGrowth": "fixed-width",
-                          "width": 108
-                        }
-                      }
-                    },
-                    {
-                      "id": "M6FJMT",
-                      "type": "ref",
-                      "ref": "k18ub",
-                      "name": "Restaurant Card / 철길 옆 돈가스",
-                      "width": "fill_container",
-                      "descendants": {
-                        "ubIkr": {
-                          "height": 132,
-                          "children": [
-                            {
-                              "type": "rectangle",
-                              "id": "HYkmg",
-                              "x": 0,
-                              "y": 0,
-                              "name": "Editorial Photo / Artisan Pork Cutlet",
-                              "fill": {
-                                "type": "image",
-                                "enabled": true,
-                                "url": "images/generated-1785377795606.png",
-                                "mode": "fill"
-                              },
-                              "width": 156,
-                              "height": 132
-                            }
-                          ]
-                        },
-                        "BXBez": {
-                          "gap": "$spacing-8",
-                          "padding": "$spacing-12"
-                        },
-                        "S81a6": {
-                          "content": "철길 옆 돈가스"
-                        },
-                        "qnNvi": {
-                          "type": "frame",
-                          "id": "mym6n",
-                          "x": 0,
-                          "y": 0,
-                          "name": "Card Description Hidden",
-                          "enabled": false,
-                          "width": 0,
-                          "height": 0
-                        },
-                        "YQT4k": {
-                          "gap": "$spacing-8"
-                        },
-                        "X6FvJ4": {
-                          "content": "오류동",
-                          "textGrowth": "fixed-width",
-                          "width": 108
-                        }
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "N1oObU",
-              "name": "Main Write Action Row",
-              "width": "fill_container",
-              "justifyContent": "end",
-              "children": [
-                {
-                  "id": "xkErs",
-                  "type": "ref",
-                  "ref": "R4efF",
-                  "name": "Floating Write Button / Brand Icon Button",
-                  "width": 48,
-                  "height": 48,
-                  "x": 280,
-                  "y": 0,
-                  "effect": {
-                    "type": "shadow",
-                    "shadowType": "outer",
-                    "color": "$color-shadow-action",
-                    "offset": {
-                      "x": 0,
-                      "y": 8
-                    },
-                    "blur": 20
-                  },
-                  "children": [
-                    {
-                      "id": "gEtcC",
-                      "type": "ref",
-                      "ref": "XrX3h",
-                      "name": "Write Plus / Icon Component",
-                      "width": 24,
-                      "height": 24,
-                      "fill": "$color-text-on-action"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "w0W5y",
-          "type": "ref",
-          "ref": "EmjSr",
-          "name": "Main Bottom Navigation / Component",
-          "width": "fill_container",
-          "descendants": {
-            "GGpjZ": {
-              "enabled": false
-            },
-            "SjbxC": {
-              "enabled": false
-            }
-          }
-        }
-      ]
-    },
     {
       "type": "text",
       "id": "hRc29",
@@ -25820,8 +25308,8 @@
     {
       "type": "frame",
       "id": "xMwo5",
-      "x": 482,
-      "y": 6312,
+      "x": 54,
+      "y": 6324,
       "name": "04 Login Page",
       "clip": true,
       "width": 360,
@@ -26075,493 +25563,6 @@
               ]
             }
           ]
-        }
-      ]
-    },
-    {
-      "type": "frame",
-      "id": "lfkLp",
-      "x": 922,
-      "y": 6312,
-      "name": "05 My Page",
-      "clip": true,
-      "width": 360,
-      "height": 858,
-      "fill": "$color-background-default",
-      "layout": "vertical",
-      "children": [
-        {
-          "type": "frame",
-          "id": "jQwx6",
-          "name": "My Status Bar",
-          "width": "fill_container",
-          "height": 62,
-          "padding": [
-            0,
-            "$spacing-20"
-          ],
-          "justifyContent": "space_between",
-          "alignItems": "center",
-          "children": [
-            {
-              "id": "GVqeV",
-              "type": "ref",
-              "ref": "lSl6h",
-              "name": "Status Time / Typography heading-sm",
-              "content": "9:20",
-              "fill": "$color-text-default",
-              "textGrowth": "auto"
-            },
-            {
-              "type": "frame",
-              "id": "mMw7k",
-              "name": "Status Icons",
-              "gap": "$spacing-8",
-              "alignItems": "center",
-              "children": [
-                {
-                  "id": "V6olc",
-                  "type": "ref",
-                  "ref": "pgiUK",
-                  "name": "Status Signal / Icon Component",
-                  "width": 18,
-                  "height": 18,
-                  "fill": "$color-text-strong"
-                },
-                {
-                  "id": "fol2Y",
-                  "type": "ref",
-                  "ref": "hl5sH",
-                  "name": "Status Wifi / Closest Refresh Icon",
-                  "width": 18,
-                  "height": 18,
-                  "fill": "$color-text-strong"
-                },
-                {
-                  "id": "mTQSO",
-                  "type": "ref",
-                  "ref": "D1kEd",
-                  "name": "Status Battery / Closest Notification Icon",
-                  "width": 22,
-                  "height": 22,
-                  "fill": "$color-text-strong"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "PhkXp",
-          "type": "ref",
-          "ref": "sWO2D",
-          "name": "My Top Navigation / Component",
-          "width": "fill_container",
-          "descendants": {
-            "p9yfLb": {
-              "enabled": false
-            },
-            "hFj2m": {
-              "content": "마이페이지"
-            },
-            "R7DuNK": {
-              "enabled": false
-            }
-          }
-        },
-        {
-          "type": "frame",
-          "id": "B3beap",
-          "name": "My Content",
-          "width": "fill_container",
-          "height": "fill_container",
-          "layout": "vertical",
-          "gap": "$spacing-24",
-          "padding": [
-            "$spacing-20",
-            "$spacing-16",
-            "$spacing-24",
-            "$spacing-16"
-          ],
-          "children": [
-            {
-              "type": "frame",
-              "id": "r2oyP",
-              "name": "Profile Summary",
-              "width": "fill_container",
-              "fill": "$color-background-brand-subtle",
-              "cornerRadius": 20,
-              "stroke": "$color-border-brand",
-              "strokeWidth": 1,
-              "gap": "$spacing-16",
-              "padding": "$spacing-20",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "ellipse",
-                  "id": "YxWBu",
-                  "name": "Profile Image",
-                  "metadata": {
-                    "type": "unsplash",
-                    "username": "panitan",
-                    "link": "https://unsplash.com/@panitan",
-                    "author": "panitan punpuang"
-                  },
-                  "fill": {
-                    "type": "image",
-                    "enabled": true,
-                    "url": "images/generated-1785377815646.png",
-                    "mode": "fill"
-                  },
-                  "width": 72,
-                  "height": 72,
-                  "stroke": "$color-background-surface",
-                  "strokeWidth": 3
-                },
-                {
-                  "type": "frame",
-                  "id": "WeEFb",
-                  "name": "Profile Information",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 4,
-                  "children": [
-                    {
-                      "id": "eXVA9",
-                      "type": "ref",
-                      "ref": "K7uBDb",
-                      "name": "Profile Nickname / Typography heading-lg",
-                      "content": "맛집사냥꾼",
-                      "fill": "$color-text-strong"
-                    },
-                    {
-                      "id": "dXUF3",
-                      "type": "ref",
-                      "ref": "V7sCMw",
-                      "name": "Profile Email / Typography label-md",
-                      "content": "Google 계정 연결됨",
-                      "fill": "$color-text-secondary",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container"
-                    }
-                  ]
-                },
-                {
-                  "id": "j3ci39",
-                  "type": "ref",
-                  "ref": "N4t8R",
-                  "name": "Edit Profile / Ghost Icon Button Component",
-                  "width": 40,
-                  "height": 40,
-                  "descendants": {
-                    "XvNoD": {
-                      "id": "x4iqL",
-                      "type": "ref",
-                      "ref": "kBqcg",
-                      "name": "Edit Profile Icon / 20",
-                      "width": 20,
-                      "height": 20,
-                      "fill": "$color-text-default"
-                    }
-                  }
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "pR4kh",
-              "name": "My Posts Section",
-              "width": "fill_container",
-              "layout": "vertical",
-              "gap": "$spacing-12",
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "OXqn6",
-                  "name": "My Posts Header",
-                  "width": "fill_container",
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "id": "R0vjm",
-                      "type": "ref",
-                      "ref": "WeeHe",
-                      "name": "My Posts Title / Typography heading-md",
-                      "content": "내가 쓴 글 7",
-                      "fill": "$color-text-default"
-                    },
-                    {
-                      "id": "KhEju",
-                      "type": "ref",
-                      "ref": "V7sCMw",
-                      "name": "My Posts Sort / Typography label-md",
-                      "content": "최신순",
-                      "fill": "$color-text-subtle"
-                    }
-                  ]
-                },
-                {
-                  "id": "rp68h",
-                  "type": "ref",
-                  "ref": "k18ub",
-                  "name": "My Post / 골목 끝 화덕 생선구이",
-                  "width": "fill_container",
-                  "height": 96,
-                  "layout": "horizontal",
-                  "descendants": {
-                    "ubIkr": {
-                      "width": 96,
-                      "height": 96,
-                      "children": [
-                        {
-                          "type": "rectangle",
-                          "id": "eOjm0",
-                          "x": 0,
-                          "y": 0,
-                          "name": "My Post Photo / Grilled Fish",
-                          "metadata": {
-                            "type": "unsplash",
-                            "username": "cora1t",
-                            "link": "https://unsplash.com/@cora1t",
-                            "author": "Coralt Zou"
-                          },
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "images/generated-1785377851513.png",
-                            "mode": "fill"
-                          },
-                          "width": 96,
-                          "height": 96
-                        }
-                      ]
-                    },
-                    "BXBez": {
-                      "width": "fill_container",
-                      "padding": 12,
-                      "gap": 4
-                    },
-                    "S81a6": {
-                      "content": "골목 끝 화덕 생선구이"
-                    },
-                    "qnNvi": {
-                      "type": "frame",
-                      "id": "M2rRA0",
-                      "x": 0,
-                      "y": 0,
-                      "name": "Post Description Hidden",
-                      "enabled": false,
-                      "width": 0,
-                      "height": 0,
-                      "layout": "none"
-                    },
-                    "c4tsiY": {
-                      "id": "qIsHO",
-                      "type": "ref",
-                      "ref": "w5wuS",
-                      "name": "Post Date Calendar / 16",
-                      "width": 16,
-                      "height": 16,
-                      "fill": "$color-text-disabled"
-                    },
-                    "X6FvJ4": {
-                      "content": "2026. 07. 28"
-                    }
-                  }
-                },
-                {
-                  "id": "ADTZ9",
-                  "type": "ref",
-                  "ref": "k18ub",
-                  "name": "My Post / 시흥 손칼국수",
-                  "width": "fill_container",
-                  "height": 96,
-                  "layout": "horizontal",
-                  "descendants": {
-                    "ubIkr": {
-                      "width": 96,
-                      "height": 96,
-                      "children": [
-                        {
-                          "type": "rectangle",
-                          "id": "ICduM",
-                          "x": 0,
-                          "y": 0,
-                          "name": "My Post Photo / Noodle Soup",
-                          "metadata": {
-                            "type": "unsplash",
-                            "username": "ninjason",
-                            "link": "https://unsplash.com/@ninjason",
-                            "author": "Jason Leung"
-                          },
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "images/generated-1785377815598.png",
-                            "mode": "fill"
-                          },
-                          "width": 96,
-                          "height": 96
-                        }
-                      ]
-                    },
-                    "BXBez": {
-                      "width": "fill_container",
-                      "padding": 12,
-                      "gap": 4
-                    },
-                    "S81a6": {
-                      "content": "비 오는 날 시흥 손칼국수"
-                    },
-                    "qnNvi": {
-                      "type": "frame",
-                      "id": "BIzim",
-                      "x": 0,
-                      "y": 0,
-                      "name": "Post Description Hidden",
-                      "enabled": false,
-                      "width": 0,
-                      "height": 0,
-                      "layout": "none"
-                    },
-                    "c4tsiY": {
-                      "id": "k4Fl7",
-                      "type": "ref",
-                      "ref": "w5wuS",
-                      "name": "Post Date Calendar / 16",
-                      "width": 16,
-                      "height": 16,
-                      "fill": "$color-text-disabled"
-                    },
-                    "X6FvJ4": {
-                      "content": "2026. 07. 21"
-                    }
-                  }
-                },
-                {
-                  "id": "OHeC6",
-                  "type": "ref",
-                  "ref": "k18ub",
-                  "name": "My Post / 광명 밤일마을 카페",
-                  "width": "fill_container",
-                  "height": 96,
-                  "layout": "horizontal",
-                  "descendants": {
-                    "ubIkr": {
-                      "width": 96,
-                      "height": 96,
-                      "children": [
-                        {
-                          "type": "rectangle",
-                          "id": "j3M7w",
-                          "x": 0,
-                          "y": 0,
-                          "name": "My Post Photo / Cafe",
-                          "metadata": {
-                            "type": "unsplash",
-                            "username": "hi_i_am_steph",
-                            "link": "https://unsplash.com/@hi_i_am_steph",
-                            "author": "Stephan Coudassot"
-                          },
-                          "fill": {
-                            "type": "image",
-                            "enabled": true,
-                            "url": "images/generated-1785377815434.png",
-                            "mode": "fill"
-                          },
-                          "width": 96,
-                          "height": 96
-                        }
-                      ]
-                    },
-                    "BXBez": {
-                      "width": "fill_container",
-                      "padding": 12,
-                      "gap": 4
-                    },
-                    "S81a6": {
-                      "content": "광명 밤일마을 작은 카페"
-                    },
-                    "qnNvi": {
-                      "type": "frame",
-                      "id": "nQuW8",
-                      "x": 0,
-                      "y": 0,
-                      "name": "Post Description Hidden",
-                      "enabled": false,
-                      "width": 0,
-                      "height": 0,
-                      "layout": "none"
-                    },
-                    "c4tsiY": {
-                      "id": "zCbvz",
-                      "type": "ref",
-                      "ref": "w5wuS",
-                      "name": "Post Date Calendar / 16",
-                      "width": 16,
-                      "height": 16,
-                      "fill": "$color-text-disabled"
-                    },
-                    "X6FvJ4": {
-                      "content": "2026. 07. 14"
-                    }
-                  }
-                }
-              ]
-            },
-            {
-              "id": "j8fasw",
-              "type": "ref",
-              "ref": "dFU23",
-              "name": "Logout / Secondary Button Component",
-              "width": "fill_container",
-              "height": 48,
-              "descendants": {
-                "hBaEl": {
-                  "id": "EjAHk",
-                  "type": "ref",
-                  "ref": "ZcYHO",
-                  "name": "Logout Icon / 20",
-                  "width": 20,
-                  "height": 20,
-                  "fill": "$color-text-default"
-                },
-                "uTYxZ": {
-                  "content": "로그아웃"
-                },
-                "zQ0m7": {
-                  "enabled": false
-                }
-              }
-            }
-          ]
-        },
-        {
-          "id": "ZDsJM",
-          "type": "ref",
-          "ref": "EmjSr",
-          "name": "My Bottom Navigation / Component",
-          "width": "fill_container",
-          "descendants": {
-            "OFWuK": {
-              "fill": "$color-text-secondary"
-            },
-            "Oqgtk": {
-              "fill": "$color-text-secondary"
-            },
-            "GGpjZ": {
-              "enabled": false
-            },
-            "SjbxC": {
-              "enabled": false
-            },
-            "lhtoK": {
-              "fill": "$color-background-brand"
-            },
-            "f4Gcn": {
-              "fill": "$color-text-brand"
-            }
-          }
         }
       ]
     },
@@ -31136,6 +30137,3600 @@
               "fill": "$color-text-body",
               "textGrowth": "fixed-width",
               "width": "fill_container"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "RHIJt",
+      "x": 54,
+      "y": 8643,
+      "name": "11 Main Page / Event Banner",
+      "clip": true,
+      "width": 360,
+      "fill": "$color-background-default",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "Q0NEa7",
+          "name": "Status Bar",
+          "width": "fill_container",
+          "height": 62,
+          "padding": [
+            0,
+            "$spacing-20"
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "id": "yoPI4",
+              "type": "ref",
+              "ref": "lSl6h",
+              "name": "Status Time / Typography heading-sm",
+              "content": "9:20",
+              "fill": "$color-text-default",
+              "textGrowth": "auto"
+            },
+            {
+              "type": "frame",
+              "id": "h6Ijw",
+              "name": "Status Icons",
+              "gap": "$spacing-8",
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "bLHnF",
+                  "type": "ref",
+                  "ref": "pgiUK",
+                  "name": "Status Signal / Icon Component",
+                  "width": 18,
+                  "height": 18,
+                  "fill": "$color-text-strong"
+                },
+                {
+                  "id": "a2Mwt",
+                  "type": "ref",
+                  "ref": "hl5sH",
+                  "name": "Status Wifi / Closest Refresh Icon",
+                  "width": 18,
+                  "height": 18,
+                  "fill": "$color-text-strong"
+                },
+                {
+                  "id": "NyBvC",
+                  "type": "ref",
+                  "ref": "D1kEd",
+                  "name": "Status Battery / Closest Notification Icon",
+                  "width": 22,
+                  "height": 22,
+                  "fill": "$color-text-strong"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "JCHIs",
+          "name": "Main Content",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": "$spacing-24",
+          "padding": [
+            "$spacing-8",
+            "$spacing-16",
+            "$spacing-16",
+            "$spacing-16"
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "UFyza",
+              "name": "Main Logo Area",
+              "width": "fill_container",
+              "gap": "$spacing-12",
+              "padding": [
+                "$spacing-8",
+                4
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "Z5HGi",
+                  "type": "ref",
+                  "ref": "R4efF",
+                  "name": "Main Logo Mark / Brand Icon Button Component",
+                  "width": 40,
+                  "height": 40,
+                  "descendants": {
+                    "aVtTM": {
+                      "id": "T31HW",
+                      "type": "ref",
+                      "ref": "mM2Mb",
+                      "name": "Main Logo Image Icon / 20",
+                      "width": 20,
+                      "height": 20,
+                      "fill": "$color-text-on-brand"
+                    }
+                  }
+                },
+                {
+                  "type": "frame",
+                  "id": "g9TCfV",
+                  "name": "Main Logo Copy",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "id": "aJiTP",
+                      "type": "ref",
+                      "ref": "WeeHe",
+                      "name": "Main Logo Wordmark / Typography heading-md",
+                      "content": "구로 맛집 지도",
+                      "fill": "$color-text-strong"
+                    },
+                    {
+                      "id": "cQEcZ",
+                      "type": "ref",
+                      "ref": "V7sCMw",
+                      "name": "Main Logo Tagline / Typography label-md",
+                      "content": "이번 주말, 어디 가볼까?",
+                      "fill": "$color-text-secondary"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "cwuTU",
+              "name": "Event Banner / August Food Gathering",
+              "clip": true,
+              "width": "fill_container",
+              "height": 144,
+              "fill": "$color-background-inverse",
+              "cornerRadius": 20,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "SQYbB",
+                  "name": "Event Banner Copy",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "layout": "vertical",
+                  "gap": "$spacing-8",
+                  "padding": [
+                    "$spacing-20",
+                    0,
+                    "$spacing-20",
+                    "$spacing-20"
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "id": "ctr4o",
+                      "type": "ref",
+                      "ref": "V7sCMw",
+                      "name": "Event Banner Eyebrow / Typography label-md",
+                      "content": "G U R O  T A B L E  01",
+                      "fill": "$color-brand-300",
+                      "letterSpacing": 1.2
+                    },
+                    {
+                      "id": "tr57G",
+                      "type": "ref",
+                      "ref": "WeeHe",
+                      "name": "Event Banner Title / Typography heading-md",
+                      "content": "동네 미식가들과\n한 테이블에 앉는 밤",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "fill": "$color-text-inverse",
+                      "lineHeight": "$font-line-height-tight"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "DWpfZ",
+                      "name": "Event Banner Meta",
+                      "gap": "$spacing-8",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "id": "G3khf",
+                          "type": "ref",
+                          "ref": "V7sCMw",
+                          "name": "Event Banner Date / Typography label-md",
+                          "content": "8. 29 FRI",
+                          "fill": "$color-neutral-200",
+                          "fontWeight": "$font-weight-semibold"
+                        },
+                        {
+                          "type": "ellipse",
+                          "id": "jixyA",
+                          "name": "Event Banner Meta Divider",
+                          "fill": "$color-brand-400",
+                          "width": 3,
+                          "height": 3
+                        },
+                        {
+                          "id": "nRZl6",
+                          "type": "ref",
+                          "ref": "V7sCMw",
+                          "name": "Event Banner Seats / Typography label-md",
+                          "content": "10명 한정",
+                          "fill": "$color-neutral-200"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "id": "EUCJ5",
+                  "name": "Event Banner Dinner Image",
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "images/generated-1785377795832.png",
+                    "mode": "fill"
+                  },
+                  "width": 116,
+                  "height": "fill_container"
+                }
+              ]
+            },
+            {
+              "id": "XEt5C",
+              "type": "ref",
+              "ref": "TMMeh",
+              "name": "Main Search / Text Field Component",
+              "width": "fill_container",
+              "descendants": {
+                "Ix8Ma": {
+                  "enabled": false
+                },
+                "vYpEy": {
+                  "height": 48,
+                  "padding": [
+                    0,
+                    "$spacing-16"
+                  ]
+                },
+                "e3XFNT": {
+                  "content": "가족 외식, 주차 가능, 조용한 골목",
+                  "fill": "$color-text-subtle"
+                },
+                "MNhwB": {
+                  "enabled": false
+                },
+                "z47Lz": {
+                  "type": "frame",
+                  "id": "s4Eghp",
+                  "x": 0,
+                  "y": 0,
+                  "name": "Search Helper Hidden",
+                  "enabled": false,
+                  "width": 0,
+                  "height": 0
+                }
+              }
+            },
+            {
+              "type": "frame",
+              "id": "dilvx",
+              "name": "Trending Section Header",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "Ej2bL",
+                  "type": "ref",
+                  "ref": "K7uBDb",
+                  "name": "Trending Title / Typography heading-lg",
+                  "content": "오늘의 숨은 맛집",
+                  "fill": "$color-text-default",
+                  "textGrowth": "auto"
+                },
+                {
+                  "id": "Zmu02",
+                  "type": "ref",
+                  "ref": "I4De0F",
+                  "name": "Trending Count / Typography label-lg",
+                  "content": "12곳",
+                  "fill": "$color-text-brand",
+                  "textGrowth": "auto"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "EQQK1",
+              "name": "Restaurant Poster Grid",
+              "width": "fill_container",
+              "fill": "$color-background-transparent",
+              "layout": "vertical",
+              "gap": "$spacing-20",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "pqSZg",
+                  "name": "Poster Card Row",
+                  "width": "fill_container",
+                  "gap": "$spacing-16",
+                  "children": [
+                    {
+                      "id": "w4wM6",
+                      "type": "ref",
+                      "ref": "k18ub",
+                      "name": "Restaurant Card / 골목 끝 화덕 생선구이",
+                      "width": "fill_container",
+                      "descendants": {
+                        "ubIkr": {
+                          "height": 132,
+                          "children": [
+                            {
+                              "type": "rectangle",
+                              "id": "GfJpu",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Editorial Photo / Charcoal Grilled Fish",
+                              "fill": {
+                                "type": "image",
+                                "enabled": true,
+                                "url": "images/generated-1785377851525.png",
+                                "mode": "fill"
+                              },
+                              "width": 156,
+                              "height": 132
+                            }
+                          ]
+                        },
+                        "BXBez": {
+                          "gap": "$spacing-8",
+                          "padding": "$spacing-12"
+                        },
+                        "S81a6": {
+                          "content": "골목 끝 화덕..."
+                        },
+                        "qnNvi": {
+                          "type": "frame",
+                          "id": "F6vsBw",
+                          "x": 0,
+                          "y": 0,
+                          "name": "Card Description Hidden",
+                          "enabled": false,
+                          "width": 0,
+                          "height": 0
+                        },
+                        "YQT4k": {
+                          "gap": "$spacing-8"
+                        },
+                        "X6FvJ4": {
+                          "content": "주차장 뒤편 작은 문",
+                          "textGrowth": "fixed-width",
+                          "width": 108
+                        }
+                      }
+                    },
+                    {
+                      "id": "hlY7o",
+                      "type": "ref",
+                      "ref": "k18ub",
+                      "name": "Restaurant Card / 시장 안쪽 손칼국수",
+                      "width": "fill_container",
+                      "descendants": {
+                        "ubIkr": {
+                          "height": 132,
+                          "children": [
+                            {
+                              "type": "rectangle",
+                              "id": "HXUfp",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Editorial Photo / Hand-cut Noodle Soup",
+                              "fill": {
+                                "type": "image",
+                                "enabled": true,
+                                "url": "images/generated-1785377795977.png",
+                                "mode": "fill"
+                              },
+                              "width": 156,
+                              "height": 132
+                            }
+                          ]
+                        },
+                        "BXBez": {
+                          "gap": "$spacing-8",
+                          "padding": "$spacing-12"
+                        },
+                        "S81a6": {
+                          "content": "시장 안쪽 손칼국수"
+                        },
+                        "qnNvi": {
+                          "type": "frame",
+                          "id": "Z0AKY",
+                          "x": 0,
+                          "y": 0,
+                          "name": "Card Description Hidden",
+                          "enabled": false,
+                          "width": 0,
+                          "height": 0
+                        },
+                        "YQT4k": {
+                          "gap": "$spacing-8"
+                        },
+                        "X6FvJ4": {
+                          "content": "구로시장",
+                          "textGrowth": "fixed-width",
+                          "width": 108
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "nXoun",
+                  "name": "Poster Card Row",
+                  "width": "fill_container",
+                  "gap": "$spacing-16",
+                  "children": [
+                    {
+                      "id": "ah3BL",
+                      "type": "ref",
+                      "ref": "k18ub",
+                      "name": "Restaurant Card / 밤길 와인 식탁",
+                      "width": "fill_container",
+                      "descendants": {
+                        "ubIkr": {
+                          "height": 132,
+                          "children": [
+                            {
+                              "type": "rectangle",
+                              "id": "cCDts",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Editorial Photo / Intimate Wine Table",
+                              "fill": {
+                                "type": "image",
+                                "enabled": true,
+                                "url": "images/generated-1785377795832.png",
+                                "mode": "fill"
+                              },
+                              "width": 156,
+                              "height": 132
+                            }
+                          ]
+                        },
+                        "BXBez": {
+                          "gap": "$spacing-8",
+                          "padding": "$spacing-12"
+                        },
+                        "S81a6": {
+                          "content": "밤길 와인 식탁"
+                        },
+                        "qnNvi": {
+                          "type": "frame",
+                          "id": "i4s8fJ",
+                          "x": 0,
+                          "y": 0,
+                          "name": "Card Description Hidden",
+                          "enabled": false,
+                          "width": 0,
+                          "height": 0
+                        },
+                        "YQT4k": {
+                          "gap": "$spacing-8"
+                        },
+                        "X6FvJ4": {
+                          "content": "고척동",
+                          "textGrowth": "fixed-width",
+                          "width": 108
+                        }
+                      }
+                    },
+                    {
+                      "id": "WybML",
+                      "type": "ref",
+                      "ref": "k18ub",
+                      "name": "Restaurant Card / 철길 옆 돈가스",
+                      "width": "fill_container",
+                      "descendants": {
+                        "ubIkr": {
+                          "height": 132,
+                          "children": [
+                            {
+                              "type": "rectangle",
+                              "id": "qp7Jn",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Editorial Photo / Artisan Pork Cutlet",
+                              "fill": {
+                                "type": "image",
+                                "enabled": true,
+                                "url": "images/generated-1785377795606.png",
+                                "mode": "fill"
+                              },
+                              "width": 156,
+                              "height": 132
+                            }
+                          ]
+                        },
+                        "BXBez": {
+                          "gap": "$spacing-8",
+                          "padding": "$spacing-12"
+                        },
+                        "S81a6": {
+                          "content": "철길 옆 돈가스"
+                        },
+                        "qnNvi": {
+                          "type": "frame",
+                          "id": "F8FV8o",
+                          "x": 0,
+                          "y": 0,
+                          "name": "Card Description Hidden",
+                          "enabled": false,
+                          "width": 0,
+                          "height": 0
+                        },
+                        "YQT4k": {
+                          "gap": "$spacing-8"
+                        },
+                        "X6FvJ4": {
+                          "content": "오류동",
+                          "textGrowth": "fixed-width",
+                          "width": 108
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "RO5FF",
+              "name": "Main Write Action Row",
+              "width": "fill_container",
+              "justifyContent": "end",
+              "children": [
+                {
+                  "id": "ri3Ng",
+                  "type": "ref",
+                  "ref": "R4efF",
+                  "name": "Floating Write Button / Brand Icon Button",
+                  "width": 48,
+                  "height": 48,
+                  "x": 280,
+                  "y": 0,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "$color-shadow-action",
+                    "offset": {
+                      "x": 0,
+                      "y": 8
+                    },
+                    "blur": 20
+                  },
+                  "children": [
+                    {
+                      "id": "RKf8r",
+                      "type": "ref",
+                      "ref": "XrX3h",
+                      "name": "Write Plus / Icon Component",
+                      "width": 24,
+                      "height": 24,
+                      "fill": "$color-text-on-action"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ZesbG",
+          "name": "Main Bottom Navigation / Two Items",
+          "width": "fill_container",
+          "height": 56,
+          "fill": "$color-background-surface",
+          "stroke": "$color-border-default",
+          "strokeWidth": {
+            "top": 1
+          },
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "Q6eiEW",
+              "name": "Bottom Navigation Item / 홈 / Selected",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 2,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "Q1ejrI",
+                  "type": "ref",
+                  "ref": "prTfJ",
+                  "name": "Bottom Navigation Icon / 홈 / 24",
+                  "width": 24,
+                  "height": 24,
+                  "fill": "$color-background-brand"
+                },
+                {
+                  "id": "JclFU",
+                  "type": "ref",
+                  "ref": "V7sCMw",
+                  "name": "Bottom Navigation Label / 홈 / Typography label-md",
+                  "content": "홈",
+                  "fill": "$color-text-brand"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Zb4C4",
+              "name": "Bottom Navigation Item / 마이",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 2,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "sx5qm",
+                  "type": "ref",
+                  "ref": "XXkW0",
+                  "name": "Bottom Navigation Icon / 마이 / 24",
+                  "width": 24,
+                  "height": 24,
+                  "fill": "$color-text-secondary"
+                },
+                {
+                  "id": "dzXVm",
+                  "type": "ref",
+                  "ref": "V7sCMw",
+                  "name": "Bottom Navigation Label / 마이 / Typography label-md",
+                  "content": "마이",
+                  "fill": "$color-text-secondary"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "X4gfgP",
+      "x": 494,
+      "y": 8643,
+      "name": "12 My Page / My Posts Tab",
+      "clip": true,
+      "width": 360,
+      "height": 858,
+      "fill": "$color-background-default",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "qLVIB",
+          "name": "My Status Bar",
+          "width": "fill_container",
+          "height": 62,
+          "padding": [
+            0,
+            "$spacing-20"
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "id": "dYRUH",
+              "type": "ref",
+              "ref": "lSl6h",
+              "name": "Status Time / Typography heading-sm",
+              "content": "9:20",
+              "fill": "$color-text-default",
+              "textGrowth": "auto"
+            },
+            {
+              "type": "frame",
+              "id": "nuyBz",
+              "name": "Status Icons",
+              "gap": "$spacing-8",
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "QsOcv",
+                  "type": "ref",
+                  "ref": "pgiUK",
+                  "name": "Status Signal / Icon Component",
+                  "width": 18,
+                  "height": 18,
+                  "fill": "$color-text-strong"
+                },
+                {
+                  "id": "F0vrg",
+                  "type": "ref",
+                  "ref": "hl5sH",
+                  "name": "Status Wifi / Closest Refresh Icon",
+                  "width": 18,
+                  "height": 18,
+                  "fill": "$color-text-strong"
+                },
+                {
+                  "id": "xb2gi",
+                  "type": "ref",
+                  "ref": "D1kEd",
+                  "name": "Status Battery / Closest Notification Icon",
+                  "width": 22,
+                  "height": 22,
+                  "fill": "$color-text-strong"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "H5JOx",
+          "type": "ref",
+          "ref": "sWO2D",
+          "name": "My Top Navigation / Component",
+          "width": "fill_container",
+          "descendants": {
+            "p9yfLb": {
+              "enabled": false
+            },
+            "hFj2m": {
+              "content": "마이페이지"
+            },
+            "R7DuNK": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "type": "frame",
+          "id": "efVWl",
+          "name": "My Content",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": "$spacing-24",
+          "padding": [
+            "$spacing-20",
+            "$spacing-16",
+            "$spacing-24",
+            "$spacing-16"
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "TGkgQ",
+              "name": "Profile Summary",
+              "width": "fill_container",
+              "fill": "$color-background-brand-subtle",
+              "cornerRadius": 20,
+              "stroke": "$color-border-brand",
+              "strokeWidth": 1,
+              "gap": "$spacing-16",
+              "padding": "$spacing-20",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "HuVb8",
+                  "name": "Profile Image",
+                  "metadata": {
+                    "type": "unsplash",
+                    "username": "panitan",
+                    "link": "https://unsplash.com/@panitan",
+                    "author": "panitan punpuang"
+                  },
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "images/generated-1785377815646.png",
+                    "mode": "fill"
+                  },
+                  "width": 72,
+                  "height": 72,
+                  "stroke": "$color-background-surface",
+                  "strokeWidth": 3
+                },
+                {
+                  "type": "frame",
+                  "id": "oPi6G",
+                  "name": "Profile Information",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "id": "WSIJU",
+                      "type": "ref",
+                      "ref": "K7uBDb",
+                      "name": "Profile Nickname / Typography heading-lg",
+                      "content": "맛집사냥꾼",
+                      "fill": "$color-text-strong"
+                    },
+                    {
+                      "id": "L8nRO",
+                      "type": "ref",
+                      "ref": "V7sCMw",
+                      "name": "Profile Email / Typography label-md",
+                      "content": "Google 계정 연결됨",
+                      "fill": "$color-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                },
+                {
+                  "id": "J0cBF",
+                  "type": "ref",
+                  "ref": "N4t8R",
+                  "name": "Edit Profile / Ghost Icon Button Component",
+                  "width": 40,
+                  "height": 40,
+                  "descendants": {
+                    "XvNoD": {
+                      "id": "z1BASP",
+                      "type": "ref",
+                      "ref": "kBqcg",
+                      "name": "Edit Profile Icon / 20",
+                      "width": 20,
+                      "height": 20,
+                      "fill": "$color-text-default"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "dMby4",
+              "name": "My Posts Section",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": "$spacing-12",
+              "children": [
+                {
+                  "id": "YJaJ3",
+                  "type": "ref",
+                  "ref": "zt0sS",
+                  "name": "My Page Tabs / My Posts Selected",
+                  "width": "fill_container",
+                  "descendants": {
+                    "lXMg3": {
+                      "content": "내가 쓴 글"
+                    },
+                    "tWjvc": {
+                      "content": "결제 내역"
+                    },
+                    "crzg5": {
+                      "content": "취소 내역"
+                    }
+                  }
+                },
+                {
+                  "type": "frame",
+                  "id": "gpWuf",
+                  "name": "My Posts Header",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "id": "UJmFa",
+                      "type": "ref",
+                      "ref": "WeeHe",
+                      "name": "My Posts Title / Typography heading-md",
+                      "content": "내가 쓴 글 7",
+                      "fill": "$color-text-default"
+                    },
+                    {
+                      "id": "Z7uimz",
+                      "type": "ref",
+                      "ref": "V7sCMw",
+                      "name": "My Posts Sort / Typography label-md",
+                      "content": "최신순",
+                      "fill": "$color-text-subtle"
+                    }
+                  ]
+                },
+                {
+                  "id": "Klulk",
+                  "type": "ref",
+                  "ref": "k18ub",
+                  "name": "My Post / 골목 끝 화덕 생선구이",
+                  "width": "fill_container",
+                  "height": 96,
+                  "layout": "horizontal",
+                  "descendants": {
+                    "ubIkr": {
+                      "width": 96,
+                      "height": 96,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "BpJXU",
+                          "x": 0,
+                          "y": 0,
+                          "name": "My Post Photo / Grilled Fish",
+                          "metadata": {
+                            "type": "unsplash",
+                            "username": "cora1t",
+                            "link": "https://unsplash.com/@cora1t",
+                            "author": "Coralt Zou"
+                          },
+                          "fill": {
+                            "type": "image",
+                            "enabled": true,
+                            "url": "images/generated-1785377851513.png",
+                            "mode": "fill"
+                          },
+                          "width": 96,
+                          "height": 96
+                        }
+                      ]
+                    },
+                    "BXBez": {
+                      "width": "fill_container",
+                      "padding": 12,
+                      "gap": 4
+                    },
+                    "S81a6": {
+                      "content": "골목 끝 화덕 생선구이"
+                    },
+                    "qnNvi": {
+                      "type": "frame",
+                      "id": "S5lrJu",
+                      "x": 0,
+                      "y": 0,
+                      "name": "Post Description Hidden",
+                      "enabled": false,
+                      "width": 0,
+                      "height": 0,
+                      "layout": "none"
+                    },
+                    "c4tsiY": {
+                      "id": "s6UoKR",
+                      "type": "ref",
+                      "ref": "w5wuS",
+                      "name": "Post Date Calendar / 16",
+                      "width": 16,
+                      "height": 16,
+                      "fill": "$color-text-disabled"
+                    },
+                    "X6FvJ4": {
+                      "content": "2026. 07. 28"
+                    }
+                  }
+                },
+                {
+                  "id": "J9IpMz",
+                  "type": "ref",
+                  "ref": "k18ub",
+                  "name": "My Post / 시흥 손칼국수",
+                  "width": "fill_container",
+                  "height": 96,
+                  "layout": "horizontal",
+                  "descendants": {
+                    "ubIkr": {
+                      "width": 96,
+                      "height": 96,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "sefWK",
+                          "x": 0,
+                          "y": 0,
+                          "name": "My Post Photo / Noodle Soup",
+                          "metadata": {
+                            "type": "unsplash",
+                            "username": "ninjason",
+                            "link": "https://unsplash.com/@ninjason",
+                            "author": "Jason Leung"
+                          },
+                          "fill": {
+                            "type": "image",
+                            "enabled": true,
+                            "url": "images/generated-1785377815598.png",
+                            "mode": "fill"
+                          },
+                          "width": 96,
+                          "height": 96
+                        }
+                      ]
+                    },
+                    "BXBez": {
+                      "width": "fill_container",
+                      "padding": 12,
+                      "gap": 4
+                    },
+                    "S81a6": {
+                      "content": "비 오는 날 시흥 손칼국수"
+                    },
+                    "qnNvi": {
+                      "type": "frame",
+                      "id": "ECvNF",
+                      "x": 0,
+                      "y": 0,
+                      "name": "Post Description Hidden",
+                      "enabled": false,
+                      "width": 0,
+                      "height": 0,
+                      "layout": "none"
+                    },
+                    "c4tsiY": {
+                      "id": "xwiEG",
+                      "type": "ref",
+                      "ref": "w5wuS",
+                      "name": "Post Date Calendar / 16",
+                      "width": 16,
+                      "height": 16,
+                      "fill": "$color-text-disabled"
+                    },
+                    "X6FvJ4": {
+                      "content": "2026. 07. 21"
+                    }
+                  }
+                },
+                {
+                  "id": "d06xQM",
+                  "type": "ref",
+                  "ref": "k18ub",
+                  "name": "My Post / 광명 밤일마을 카페",
+                  "width": "fill_container",
+                  "height": 96,
+                  "layout": "horizontal",
+                  "descendants": {
+                    "ubIkr": {
+                      "width": 96,
+                      "height": 96,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "C5AYV",
+                          "x": 0,
+                          "y": 0,
+                          "name": "My Post Photo / Cafe",
+                          "metadata": {
+                            "type": "unsplash",
+                            "username": "hi_i_am_steph",
+                            "link": "https://unsplash.com/@hi_i_am_steph",
+                            "author": "Stephan Coudassot"
+                          },
+                          "fill": {
+                            "type": "image",
+                            "enabled": true,
+                            "url": "images/generated-1785377815434.png",
+                            "mode": "fill"
+                          },
+                          "width": 96,
+                          "height": 96
+                        }
+                      ]
+                    },
+                    "BXBez": {
+                      "width": "fill_container",
+                      "padding": 12,
+                      "gap": 4
+                    },
+                    "S81a6": {
+                      "content": "광명 밤일마을 작은 카페"
+                    },
+                    "qnNvi": {
+                      "type": "frame",
+                      "id": "hxoJ2",
+                      "x": 0,
+                      "y": 0,
+                      "name": "Post Description Hidden",
+                      "enabled": false,
+                      "width": 0,
+                      "height": 0,
+                      "layout": "none"
+                    },
+                    "c4tsiY": {
+                      "id": "w7OFib",
+                      "type": "ref",
+                      "ref": "w5wuS",
+                      "name": "Post Date Calendar / 16",
+                      "width": 16,
+                      "height": 16,
+                      "fill": "$color-text-disabled"
+                    },
+                    "X6FvJ4": {
+                      "content": "2026. 07. 14"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "MrG8p",
+              "type": "ref",
+              "ref": "dFU23",
+              "name": "Logout / Secondary Button Component",
+              "width": "fill_container",
+              "height": 48,
+              "descendants": {
+                "hBaEl": {
+                  "id": "yKAQN",
+                  "type": "ref",
+                  "ref": "ZcYHO",
+                  "name": "Logout Icon / 20",
+                  "width": 20,
+                  "height": 20,
+                  "fill": "$color-text-default"
+                },
+                "uTYxZ": {
+                  "content": "로그아웃"
+                },
+                "zQ0m7": {
+                  "enabled": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "w1DBo",
+          "name": "My Posts Bottom Navigation / Two Items",
+          "width": "fill_container",
+          "height": 56,
+          "fill": "$color-background-surface",
+          "stroke": "$color-border-default",
+          "strokeWidth": {
+            "top": 1
+          },
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "Tbapx",
+              "name": "Bottom Navigation Item / 홈",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 2,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "X9OQwi",
+                  "type": "ref",
+                  "ref": "prTfJ",
+                  "name": "Bottom Navigation Icon / 홈 / 24",
+                  "width": 24,
+                  "height": 24,
+                  "fill": "$color-text-secondary"
+                },
+                {
+                  "id": "ryV4K",
+                  "type": "ref",
+                  "ref": "V7sCMw",
+                  "name": "Bottom Navigation Label / 홈 / Typography label-md",
+                  "content": "홈",
+                  "fill": "$color-text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "h3DK8",
+              "name": "Bottom Navigation Item / 마이 / Selected",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 2,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "m2itv",
+                  "type": "ref",
+                  "ref": "XXkW0",
+                  "name": "Bottom Navigation Icon / 마이 / 24",
+                  "width": 24,
+                  "height": 24,
+                  "fill": "$color-background-brand"
+                },
+                {
+                  "id": "C0p5wf",
+                  "type": "ref",
+                  "ref": "V7sCMw",
+                  "name": "Bottom Navigation Label / 마이 / Typography label-md",
+                  "content": "마이",
+                  "fill": "$color-text-brand"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "rX2Ba",
+      "x": 934,
+      "y": 8643,
+      "name": "13 My Page / Payments Tab",
+      "clip": true,
+      "width": 360,
+      "height": 858,
+      "fill": "$color-background-default",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "ClKTQ",
+          "name": "My Status Bar",
+          "width": "fill_container",
+          "height": 62,
+          "padding": [
+            0,
+            "$spacing-20"
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "id": "Gbp8X",
+              "type": "ref",
+              "ref": "lSl6h",
+              "name": "Status Time / Typography heading-sm",
+              "content": "9:20",
+              "fill": "$color-text-default",
+              "textGrowth": "auto"
+            },
+            {
+              "type": "frame",
+              "id": "JIJYP",
+              "name": "Status Icons",
+              "gap": "$spacing-8",
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "F8niCm",
+                  "type": "ref",
+                  "ref": "pgiUK",
+                  "name": "Status Signal / Icon Component",
+                  "width": 18,
+                  "height": 18,
+                  "fill": "$color-text-strong"
+                },
+                {
+                  "id": "p9FRA",
+                  "type": "ref",
+                  "ref": "hl5sH",
+                  "name": "Status Wifi / Closest Refresh Icon",
+                  "width": 18,
+                  "height": 18,
+                  "fill": "$color-text-strong"
+                },
+                {
+                  "id": "cg4jZ",
+                  "type": "ref",
+                  "ref": "D1kEd",
+                  "name": "Status Battery / Closest Notification Icon",
+                  "width": 22,
+                  "height": 22,
+                  "fill": "$color-text-strong"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "GV0Wq",
+          "type": "ref",
+          "ref": "sWO2D",
+          "name": "My Top Navigation / Component",
+          "width": "fill_container",
+          "descendants": {
+            "p9yfLb": {
+              "enabled": false
+            },
+            "hFj2m": {
+              "content": "마이페이지"
+            },
+            "R7DuNK": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "type": "frame",
+          "id": "UR80q",
+          "name": "My Content",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": "$spacing-24",
+          "padding": [
+            "$spacing-20",
+            "$spacing-16",
+            "$spacing-24",
+            "$spacing-16"
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "kgB9v",
+              "name": "Profile Summary",
+              "width": "fill_container",
+              "fill": "$color-background-brand-subtle",
+              "cornerRadius": 20,
+              "stroke": "$color-border-brand",
+              "strokeWidth": 1,
+              "gap": "$spacing-16",
+              "padding": "$spacing-20",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "f9kfSB",
+                  "name": "Profile Image",
+                  "metadata": {
+                    "type": "unsplash",
+                    "username": "panitan",
+                    "link": "https://unsplash.com/@panitan",
+                    "author": "panitan punpuang"
+                  },
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "images/generated-1785377815646.png",
+                    "mode": "fill"
+                  },
+                  "width": 72,
+                  "height": 72,
+                  "stroke": "$color-background-surface",
+                  "strokeWidth": 3
+                },
+                {
+                  "type": "frame",
+                  "id": "xbbaQ",
+                  "name": "Profile Information",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "id": "a1ECoT",
+                      "type": "ref",
+                      "ref": "K7uBDb",
+                      "name": "Profile Nickname / Typography heading-lg",
+                      "content": "맛집사냥꾼",
+                      "fill": "$color-text-strong"
+                    },
+                    {
+                      "id": "jGmGT",
+                      "type": "ref",
+                      "ref": "V7sCMw",
+                      "name": "Profile Email / Typography label-md",
+                      "content": "Google 계정 연결됨",
+                      "fill": "$color-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                },
+                {
+                  "id": "uc2i3",
+                  "type": "ref",
+                  "ref": "N4t8R",
+                  "name": "Edit Profile / Ghost Icon Button Component",
+                  "width": 40,
+                  "height": 40,
+                  "descendants": {
+                    "XvNoD": {
+                      "id": "pNthn",
+                      "type": "ref",
+                      "ref": "kBqcg",
+                      "name": "Edit Profile Icon / 20",
+                      "width": 20,
+                      "height": 20,
+                      "fill": "$color-text-default"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "NTHRA",
+              "name": "Payments Section",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": "$spacing-16",
+              "children": [
+                {
+                  "id": "G7aoL",
+                  "type": "ref",
+                  "ref": "zt0sS",
+                  "name": "My Page Tabs / Payments Selected",
+                  "width": "fill_container",
+                  "descendants": {
+                    "lXMg3": {
+                      "content": "내가 쓴 글",
+                      "fill": "$color-text-secondary"
+                    },
+                    "YgThx": {
+                      "fill": "$color-background-transparent"
+                    },
+                    "tWjvc": {
+                      "content": "결제 내역",
+                      "fill": "$color-text-brand"
+                    },
+                    "HmJAA": {
+                      "fill": "$color-background-brand"
+                    },
+                    "crzg5": {
+                      "content": "취소 내역"
+                    }
+                  }
+                },
+                {
+                  "type": "frame",
+                  "id": "q65HK",
+                  "name": "Payment History Header",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "id": "kljmu",
+                      "type": "ref",
+                      "ref": "lSl6h",
+                      "name": "Payment History Title / Typography heading-sm",
+                      "content": "참여 예정 모임",
+                      "fill": "$color-text-default"
+                    },
+                    {
+                      "id": "l31g1",
+                      "type": "ref",
+                      "ref": "V7sCMw",
+                      "name": "Payment History Count / Typography label-md",
+                      "content": "1건",
+                      "fill": "$color-text-brand",
+                      "fontWeight": "$font-weight-semibold"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "z88O4o",
+                  "name": "Payment Item / August Food Gathering",
+                  "width": "fill_container",
+                  "fill": "$color-background-surface",
+                  "cornerRadius": 16,
+                  "stroke": "$color-border-default",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": "$spacing-16",
+                  "padding": "$spacing-16",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "cR3p9",
+                      "name": "Payment Item Summary",
+                      "width": "fill_container",
+                      "gap": "$spacing-12",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 12,
+                          "id": "UqNdm",
+                          "name": "Payment Item Event Image",
+                          "fill": {
+                            "type": "image",
+                            "enabled": true,
+                            "url": "images/generated-1785377795832.png",
+                            "mode": "fill"
+                          },
+                          "width": 72,
+                          "height": 72
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Eqle1",
+                          "name": "Payment Item Information",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 4,
+                          "children": [
+                            {
+                              "id": "Z9vKu",
+                              "type": "ref",
+                              "ref": "QSgYa",
+                              "name": "Payment Status / Success Badge",
+                              "descendants": {
+                                "yrW6m": {
+                                  "content": "참여 확정"
+                                }
+                              }
+                            },
+                            {
+                              "id": "LNl4y",
+                              "type": "ref",
+                              "ref": "lSl6h",
+                              "name": "Payment Item Title / Typography heading-sm",
+                              "content": "8월 구로 미식 모임",
+                              "fill": "$color-text-default"
+                            },
+                            {
+                              "id": "dkiUt",
+                              "type": "ref",
+                              "ref": "V7sCMw",
+                              "name": "Payment Item Schedule / Typography label-md",
+                              "content": "8.29 금 · 19:30 · 구로시장 키친",
+                              "fill": "$color-text-secondary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "eKiGF",
+                      "name": "Payment Item Details",
+                      "width": "fill_container",
+                      "stroke": "$color-border-default",
+                      "strokeWidth": {
+                        "top": 1
+                      },
+                      "layout": "vertical",
+                      "gap": "$spacing-8",
+                      "padding": [
+                        "$spacing-12",
+                        0,
+                        0,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "SSNLM",
+                          "name": "Payment Detail / 결제 금액",
+                          "width": "fill_container",
+                          "justifyContent": "space_between",
+                          "children": [
+                            {
+                              "id": "o2AatU",
+                              "type": "ref",
+                              "ref": "V7sCMw",
+                              "name": "Payment Amount Label / Typography",
+                              "content": "결제 금액",
+                              "fill": "$color-text-subtle"
+                            },
+                            {
+                              "id": "knH2y",
+                              "type": "ref",
+                              "ref": "V7sCMw",
+                              "name": "Payment Amount Value / Typography",
+                              "content": "30,000원",
+                              "fill": "$color-text-default",
+                              "fontWeight": "$font-weight-semibold"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "r7BDHj",
+                          "name": "Payment Detail / 결제 일시",
+                          "width": "fill_container",
+                          "justifyContent": "space_between",
+                          "children": [
+                            {
+                              "id": "pNV6t",
+                              "type": "ref",
+                              "ref": "V7sCMw",
+                              "name": "Payment Date Label / Typography",
+                              "content": "결제 일시",
+                              "fill": "$color-text-subtle"
+                            },
+                            {
+                              "id": "BLZU4",
+                              "type": "ref",
+                              "ref": "V7sCMw",
+                              "name": "Payment Date Value / Typography",
+                              "content": "2026.08.13 21:04",
+                              "fill": "$color-text-default",
+                              "fontWeight": "$font-weight-semibold"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "K2XI73",
+                      "type": "ref",
+                      "ref": "qQKgl",
+                      "name": "Cancel Payment / Destructive Button Component",
+                      "width": "fill_container",
+                      "descendants": {
+                        "m7l0E": {
+                          "enabled": false
+                        },
+                        "IKkHr": {
+                          "content": "결제 취소"
+                        },
+                        "Tr4CI": {
+                          "enabled": false
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "qLCO1",
+              "type": "ref",
+              "ref": "dFU23",
+              "name": "Logout / Secondary Button Component",
+              "width": "fill_container",
+              "height": 48,
+              "descendants": {
+                "hBaEl": {
+                  "id": "k80R9T",
+                  "type": "ref",
+                  "ref": "ZcYHO",
+                  "name": "Logout Icon / 20",
+                  "width": 20,
+                  "height": 20,
+                  "fill": "$color-text-default"
+                },
+                "uTYxZ": {
+                  "content": "로그아웃"
+                },
+                "zQ0m7": {
+                  "enabled": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "qXET6",
+          "name": "Payments Bottom Navigation / Two Items",
+          "width": "fill_container",
+          "height": 56,
+          "fill": "$color-background-surface",
+          "stroke": "$color-border-default",
+          "strokeWidth": {
+            "top": 1
+          },
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "TGV9c",
+              "name": "Bottom Navigation Item / 홈",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 2,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "sc6T9",
+                  "type": "ref",
+                  "ref": "prTfJ",
+                  "name": "Bottom Navigation Icon / 홈 / 24",
+                  "width": 24,
+                  "height": 24,
+                  "fill": "$color-text-secondary"
+                },
+                {
+                  "id": "krOBF",
+                  "type": "ref",
+                  "ref": "V7sCMw",
+                  "name": "Bottom Navigation Label / 홈 / Typography label-md",
+                  "content": "홈",
+                  "fill": "$color-text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "paduc",
+              "name": "Bottom Navigation Item / 마이 / Selected",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 2,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "jdA2g",
+                  "type": "ref",
+                  "ref": "XXkW0",
+                  "name": "Bottom Navigation Icon / 마이 / 24",
+                  "width": 24,
+                  "height": 24,
+                  "fill": "$color-background-brand"
+                },
+                {
+                  "id": "ZjXf8",
+                  "type": "ref",
+                  "ref": "V7sCMw",
+                  "name": "Bottom Navigation Label / 마이 / Typography label-md",
+                  "content": "마이",
+                  "fill": "$color-text-brand"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "dQXMN",
+      "x": 1374,
+      "y": 8643,
+      "name": "14 My Page / Canceled Tab",
+      "clip": true,
+      "width": 360,
+      "height": 858,
+      "fill": "$color-background-default",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "n8CmpQ",
+          "name": "My Status Bar",
+          "width": "fill_container",
+          "height": 62,
+          "padding": [
+            0,
+            "$spacing-20"
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "id": "Hk73r",
+              "type": "ref",
+              "ref": "lSl6h",
+              "name": "Status Time / Typography heading-sm",
+              "content": "9:20",
+              "fill": "$color-text-default",
+              "textGrowth": "auto"
+            },
+            {
+              "type": "frame",
+              "id": "p0GpQ",
+              "name": "Status Icons",
+              "gap": "$spacing-8",
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "dX5qF",
+                  "type": "ref",
+                  "ref": "pgiUK",
+                  "name": "Status Signal / Icon Component",
+                  "width": 18,
+                  "height": 18,
+                  "fill": "$color-text-strong"
+                },
+                {
+                  "id": "VzN59",
+                  "type": "ref",
+                  "ref": "hl5sH",
+                  "name": "Status Wifi / Closest Refresh Icon",
+                  "width": 18,
+                  "height": 18,
+                  "fill": "$color-text-strong"
+                },
+                {
+                  "id": "J9rLPb",
+                  "type": "ref",
+                  "ref": "D1kEd",
+                  "name": "Status Battery / Closest Notification Icon",
+                  "width": 22,
+                  "height": 22,
+                  "fill": "$color-text-strong"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "XoJN2",
+          "type": "ref",
+          "ref": "sWO2D",
+          "name": "My Top Navigation / Component",
+          "width": "fill_container",
+          "descendants": {
+            "p9yfLb": {
+              "enabled": false
+            },
+            "hFj2m": {
+              "content": "마이페이지"
+            },
+            "R7DuNK": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "type": "frame",
+          "id": "XwZNo",
+          "name": "My Content",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": "$spacing-24",
+          "padding": [
+            "$spacing-20",
+            "$spacing-16",
+            "$spacing-24",
+            "$spacing-16"
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "tvDH2",
+              "name": "Profile Summary",
+              "width": "fill_container",
+              "fill": "$color-background-brand-subtle",
+              "cornerRadius": 20,
+              "stroke": "$color-border-brand",
+              "strokeWidth": 1,
+              "gap": "$spacing-16",
+              "padding": "$spacing-20",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "LUmBh",
+                  "name": "Profile Image",
+                  "metadata": {
+                    "type": "unsplash",
+                    "username": "panitan",
+                    "link": "https://unsplash.com/@panitan",
+                    "author": "panitan punpuang"
+                  },
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "images/generated-1785377815646.png",
+                    "mode": "fill"
+                  },
+                  "width": 72,
+                  "height": 72,
+                  "stroke": "$color-background-surface",
+                  "strokeWidth": 3
+                },
+                {
+                  "type": "frame",
+                  "id": "ZTc0O",
+                  "name": "Profile Information",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "id": "SjedO",
+                      "type": "ref",
+                      "ref": "K7uBDb",
+                      "name": "Profile Nickname / Typography heading-lg",
+                      "content": "맛집사냥꾼",
+                      "fill": "$color-text-strong"
+                    },
+                    {
+                      "id": "oP3cx",
+                      "type": "ref",
+                      "ref": "V7sCMw",
+                      "name": "Profile Email / Typography label-md",
+                      "content": "Google 계정 연결됨",
+                      "fill": "$color-text-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                },
+                {
+                  "id": "Hjqlp",
+                  "type": "ref",
+                  "ref": "N4t8R",
+                  "name": "Edit Profile / Ghost Icon Button Component",
+                  "width": 40,
+                  "height": 40,
+                  "descendants": {
+                    "XvNoD": {
+                      "id": "Xd2Jn",
+                      "type": "ref",
+                      "ref": "kBqcg",
+                      "name": "Edit Profile Icon / 20",
+                      "width": 20,
+                      "height": 20,
+                      "fill": "$color-text-default"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "djj1A",
+              "name": "Canceled Payments Section",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": "$spacing-16",
+              "children": [
+                {
+                  "id": "OsuqX",
+                  "type": "ref",
+                  "ref": "zt0sS",
+                  "name": "My Page Tabs / Canceled Selected",
+                  "width": "fill_container",
+                  "descendants": {
+                    "lXMg3": {
+                      "content": "내가 쓴 글",
+                      "fill": "$color-text-secondary"
+                    },
+                    "YgThx": {
+                      "fill": "$color-background-transparent"
+                    },
+                    "tWjvc": {
+                      "content": "결제 내역"
+                    },
+                    "crzg5": {
+                      "content": "취소 내역",
+                      "fill": "$color-text-brand"
+                    },
+                    "BhuqN": {
+                      "fill": "$color-background-brand"
+                    }
+                  }
+                },
+                {
+                  "type": "frame",
+                  "id": "FDwBy",
+                  "name": "Canceled History Header",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "id": "r38iWa",
+                      "type": "ref",
+                      "ref": "lSl6h",
+                      "name": "Canceled History Title / Typography",
+                      "content": "환불 완료 내역",
+                      "fill": "$color-text-default",
+                      "fontWeight": "$font-weight-bold"
+                    },
+                    {
+                      "id": "w2dH3",
+                      "type": "ref",
+                      "ref": "V7sCMw",
+                      "name": "Canceled History Count / Typography",
+                      "content": "1건",
+                      "fill": "$color-text-subtle",
+                      "fontWeight": "$font-weight-semibold"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "EH8kv",
+                  "name": "Canceled Item / July Neighborhood Talk",
+                  "width": "fill_container",
+                  "fill": "$color-background-subtle",
+                  "cornerRadius": 16,
+                  "layout": "vertical",
+                  "gap": "$spacing-12",
+                  "padding": "$spacing-16",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "KqQtf",
+                      "name": "Canceled Item Title Row",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "id": "C50kgU",
+                          "type": "ref",
+                          "ref": "lSl6h",
+                          "name": "Canceled Item Title / Typography",
+                          "content": "7월 동네 식탁 이야기",
+                          "fill": "$color-text-default",
+                          "fontWeight": "$font-weight-bold"
+                        },
+                        {
+                          "id": "RNQut",
+                          "type": "ref",
+                          "ref": "QSgYa",
+                          "name": "Refunded / Success Badge",
+                          "descendants": {
+                            "yrW6m": {
+                              "content": "환불 완료"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "crqGw",
+                      "name": "Canceled Detail / 환불 금액",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "id": "LHzY8",
+                          "type": "ref",
+                          "ref": "V7sCMw",
+                          "name": "Refund Amount Label / Typography",
+                          "content": "환불 금액",
+                          "fill": "$color-text-subtle"
+                        },
+                        {
+                          "id": "pw5Z3",
+                          "type": "ref",
+                          "ref": "V7sCMw",
+                          "name": "Refund Amount Value / Typography",
+                          "content": "25,000원",
+                          "fill": "$color-text-default",
+                          "fontWeight": "$font-weight-semibold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "YR0wF",
+                      "name": "Canceled Detail / 취소 일시",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "id": "CWGZ6",
+                          "type": "ref",
+                          "ref": "V7sCMw",
+                          "name": "Canceled Date Label / Typography",
+                          "content": "취소 일시",
+                          "fill": "$color-text-subtle"
+                        },
+                        {
+                          "id": "EbP2f",
+                          "type": "ref",
+                          "ref": "V7sCMw",
+                          "name": "Canceled Date Value / Typography",
+                          "content": "2026.07.18 10:32",
+                          "fill": "$color-text-default",
+                          "fontWeight": "$font-weight-semibold"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "ImLMB",
+                      "type": "ref",
+                      "ref": "V7sCMw",
+                      "name": "Canceled Item Notice / Typography label-md",
+                      "content": "카드사 사정에 따라 환불 반영까지 3–5일 걸릴 수 있어요.",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "fill": "$color-text-secondary"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "uIAZe",
+              "type": "ref",
+              "ref": "dFU23",
+              "name": "Logout / Secondary Button Component",
+              "width": "fill_container",
+              "height": 48,
+              "descendants": {
+                "hBaEl": {
+                  "id": "S9ckdZ",
+                  "type": "ref",
+                  "ref": "ZcYHO",
+                  "name": "Logout Icon / 20",
+                  "width": 20,
+                  "height": 20,
+                  "fill": "$color-text-default"
+                },
+                "uTYxZ": {
+                  "content": "로그아웃"
+                },
+                "zQ0m7": {
+                  "enabled": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "d10v2",
+          "name": "Canceled Bottom Navigation / Two Items",
+          "width": "fill_container",
+          "height": 56,
+          "fill": "$color-background-surface",
+          "stroke": "$color-border-default",
+          "strokeWidth": {
+            "top": 1
+          },
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "b2ygVU",
+              "name": "Bottom Navigation Item / 홈",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 2,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "d8qkqB",
+                  "type": "ref",
+                  "ref": "prTfJ",
+                  "name": "Bottom Navigation Icon / 홈 / 24",
+                  "width": 24,
+                  "height": 24,
+                  "fill": "$color-text-secondary"
+                },
+                {
+                  "id": "J6uVL",
+                  "type": "ref",
+                  "ref": "V7sCMw",
+                  "name": "Bottom Navigation Label / 홈 / Typography label-md",
+                  "content": "홈",
+                  "fill": "$color-text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "U76olP",
+              "name": "Bottom Navigation Item / 마이 / Selected",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 2,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "c9rQ7E",
+                  "type": "ref",
+                  "ref": "XXkW0",
+                  "name": "Bottom Navigation Icon / 마이 / 24",
+                  "width": 24,
+                  "height": 24,
+                  "fill": "$color-background-brand"
+                },
+                {
+                  "id": "l6JjBb",
+                  "type": "ref",
+                  "ref": "V7sCMw",
+                  "name": "Bottom Navigation Label / 마이 / Typography label-md",
+                  "content": "마이",
+                  "fill": "$color-text-brand"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "wqctM",
+      "x": 1814,
+      "y": 8643,
+      "name": "15 Event Detail / August Food Gathering",
+      "clip": true,
+      "width": 360,
+      "height": 920,
+      "fill": "$color-background-default",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "fBv4B",
+          "name": "Event Detail Status Bar",
+          "width": "fill_container",
+          "height": 62,
+          "padding": [
+            0,
+            "$spacing-20"
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "id": "AyXe9",
+              "type": "ref",
+              "ref": "yKsaw",
+              "name": "Detail Status Time / Typography body-lg",
+              "content": "9:20",
+              "fill": "$color-text-strong",
+              "textGrowth": "auto"
+            },
+            {
+              "type": "frame",
+              "id": "rWKDi",
+              "name": "Detail Status Icons",
+              "gap": "$spacing-8",
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "LOJd8",
+                  "type": "ref",
+                  "ref": "B5PxOj",
+                  "name": "Detail Status Signal / Icon Component",
+                  "width": 17,
+                  "height": 17,
+                  "fill": "$color-text-strong"
+                },
+                {
+                  "id": "vyN0H",
+                  "type": "ref",
+                  "ref": "EdXKE",
+                  "name": "Detail Status Wifi / Closest Refresh Icon",
+                  "width": 17,
+                  "height": 17,
+                  "fill": "$color-text-strong"
+                },
+                {
+                  "id": "EKKIQ",
+                  "type": "ref",
+                  "ref": "D1kEd",
+                  "name": "Detail Status Battery / Closest Notification Icon",
+                  "width": 22,
+                  "height": 22,
+                  "fill": "$color-text-strong"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "LUkrd",
+          "type": "ref",
+          "ref": "sWO2D",
+          "name": "Event Detail Top Navigation / Component",
+          "width": "fill_container",
+          "descendants": {
+            "hFj2m": {
+              "content": "모임 상세"
+            },
+            "R7DuNK": {
+              "enabled": true,
+              "width": 40,
+              "height": 40
+            },
+            "BN53N": {
+              "enabled": true,
+              "width": 24,
+              "height": 24,
+              "fill": "$color-background-transparent"
+            }
+          }
+        },
+        {
+          "type": "frame",
+          "id": "YL39I",
+          "name": "Event Detail Hero",
+          "clip": true,
+          "width": "fill_container",
+          "height": 248,
+          "fill": "$color-background-image-placeholder",
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "e4w6i",
+              "x": 0,
+              "y": 0,
+              "name": "Event Detail Dinner Image",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "images/generated-1785377795832.png",
+                "mode": "fill"
+              },
+              "width": 360,
+              "height": 248
+            },
+            {
+              "type": "rectangle",
+              "id": "c1yc6N",
+              "x": 0,
+              "y": 0,
+              "name": "Event Detail Image Shade",
+              "fill": {
+                "type": "gradient",
+                "gradientType": "linear",
+                "enabled": true,
+                "rotation": 180,
+                "size": {
+                  "height": 1
+                },
+                "colors": [
+                  {
+                    "color": "$color-overlay-transparent",
+                    "position": 0
+                  },
+                  {
+                    "color": "$color-overlay-dark-strong",
+                    "position": 1
+                  }
+                ]
+              },
+              "width": 360,
+              "height": 248
+            },
+            {
+              "type": "frame",
+              "id": "avEQp",
+              "x": 20,
+              "y": 140,
+              "name": "Event Hero Copy",
+              "width": 320,
+              "layout": "vertical",
+              "gap": "$spacing-8",
+              "children": [
+                {
+                  "id": "GezGn",
+                  "type": "ref",
+                  "ref": "V7sCMw",
+                  "name": "Event Hero Eyebrow / Typography label-md",
+                  "content": "GURO TABLE · VOL.01",
+                  "fill": "$color-brand-300",
+                  "letterSpacing": 1.1,
+                  "fontWeight": "$font-weight-semibold"
+                },
+                {
+                  "id": "mHfL5",
+                  "type": "ref",
+                  "ref": "K7uBDb",
+                  "name": "Event Hero Title / Typography heading-lg",
+                  "content": "동네 미식가들과\n한 테이블에 앉는 밤",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "fill": "$color-text-on-image"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "QRjKl",
+          "name": "Event Detail Content",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": "$spacing-24",
+          "padding": [
+            "$spacing-24",
+            "$spacing-20",
+            "$spacing-20",
+            "$spacing-20"
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "W9waj",
+              "name": "Event Essential Information",
+              "width": "fill_container",
+              "stroke": "$color-border-default",
+              "strokeWidth": {
+                "bottom": 1
+              },
+              "gap": "$spacing-12",
+              "padding": [
+                0,
+                0,
+                "$spacing-20",
+                0
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "vcXTP",
+                  "name": "Event Meta / DATE",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "id": "T2oI2C",
+                      "type": "ref",
+                      "ref": "V7sCMw",
+                      "name": "Event Meta Label / DATE / Typography label-md",
+                      "content": "DATE",
+                      "fill": "$color-text-brand",
+                      "fontWeight": "$font-weight-semibold",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "id": "Sufsu",
+                      "type": "ref",
+                      "ref": "V7sCMw",
+                      "name": "Event Meta Value / DATE / Typography label-md",
+                      "content": "8.29 금 19:30",
+                      "fill": "$color-text-default",
+                      "fontWeight": "$font-weight-semibold",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "HRSF5",
+                  "name": "Event Meta / PLACE",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "id": "iQWDm",
+                      "type": "ref",
+                      "ref": "V7sCMw",
+                      "name": "Event Meta Label / PLACE / Typography label-md",
+                      "content": "PLACE",
+                      "fill": "$color-text-brand",
+                      "fontWeight": "$font-weight-semibold",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "id": "SwAKX",
+                      "type": "ref",
+                      "ref": "V7sCMw",
+                      "name": "Event Meta Value / PLACE / Typography label-md",
+                      "content": "구로시장 키친",
+                      "fill": "$color-text-default",
+                      "fontWeight": "$font-weight-semibold",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "iPdfb",
+                  "name": "Event Meta / SEATS",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "id": "aawGh",
+                      "type": "ref",
+                      "ref": "V7sCMw",
+                      "name": "Event Meta Label / SEATS / Typography label-md",
+                      "content": "SEATS",
+                      "fill": "$color-text-brand",
+                      "fontWeight": "$font-weight-semibold",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "id": "yM3hs",
+                      "type": "ref",
+                      "ref": "V7sCMw",
+                      "name": "Event Meta Value / SEATS / Typography label-md",
+                      "content": "7 / 10명",
+                      "fill": "$color-text-default",
+                      "fontWeight": "$font-weight-semibold",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "iLZ02",
+              "name": "Event Story",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": "$spacing-12",
+              "children": [
+                {
+                  "id": "HfhPp",
+                  "type": "ref",
+                  "ref": "WeeHe",
+                  "name": "Event Story Title / Typography heading-md",
+                  "content": "이번엔 후기 너머에서 만나요",
+                  "fill": "$color-text-default"
+                },
+                {
+                  "id": "F56ZWQ",
+                  "type": "ref",
+                  "ref": "FrwjP",
+                  "name": "Event Story Body / Typography body-md",
+                  "content": "우리가 저장해 둔 골목 맛집 이야기와 각자의 단골 메뉴를 나눕니다. 운영진이 준비한 세 가지 작은 접시를 함께 맛보며, 다음 주말의 목적지를 정해보세요.",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "fill": "$color-text-body"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "acT8N",
+              "name": "Event Notice",
+              "width": "fill_container",
+              "fill": "$color-background-brand-subtle",
+              "cornerRadius": 12,
+              "layout": "vertical",
+              "gap": "$spacing-8",
+              "padding": "$spacing-16",
+              "children": [
+                {
+                  "id": "nBzIM",
+                  "type": "ref",
+                  "ref": "I4De0F",
+                  "name": "Event Notice Title / Typography label-lg",
+                  "content": "참여 전 확인해주세요",
+                  "fill": "$color-text-default"
+                },
+                {
+                  "id": "Yx1vw",
+                  "type": "ref",
+                  "ref": "V7sCMw",
+                  "name": "Event Notice Body / Typography label-md",
+                  "content": "• 본인 1자리만 결제할 수 있어요.\n• 모임 시작 전까지 전액 환불 가능합니다.\n• 알레르기가 있다면 결제 후 운영진에게 알려주세요.",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "lineHeight": 1.55,
+                  "fill": "$color-text-secondary"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "tsbvv",
+          "name": "Event Detail Payment Action",
+          "width": "fill_container",
+          "fill": "$color-background-surface",
+          "stroke": "$color-border-default",
+          "strokeWidth": {
+            "top": 1
+          },
+          "padding": [
+            "$spacing-12",
+            "$spacing-16",
+            "$spacing-16",
+            "$spacing-16"
+          ],
+          "children": [
+            {
+              "id": "k6xo6T",
+              "type": "ref",
+              "ref": "Y37Zxm",
+              "name": "Pay Now / Primary Button Component",
+              "width": "fill_container",
+              "descendants": {
+                "W7I4F": {
+                  "enabled": false
+                },
+                "IMDnJ": {
+                  "content": "30,000원 결제하기"
+                },
+                "So75w": {
+                  "enabled": false
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "f12zFy",
+      "x": 2254,
+      "y": 8643,
+      "name": "16 Event Detail / Payment Bottom Sheet",
+      "clip": true,
+      "width": 360,
+      "height": 920,
+      "fill": "$color-background-default",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "w8wJP",
+          "name": "Event Detail Status Bar",
+          "width": "fill_container",
+          "height": 62,
+          "padding": [
+            0,
+            "$spacing-20"
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "id": "fBx9F",
+              "type": "ref",
+              "ref": "yKsaw",
+              "name": "Detail Status Time / Typography body-lg",
+              "content": "9:20",
+              "fill": "$color-text-strong",
+              "textGrowth": "auto"
+            },
+            {
+              "type": "frame",
+              "id": "q7unig",
+              "name": "Detail Status Icons",
+              "gap": "$spacing-8",
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "lqKz3",
+                  "type": "ref",
+                  "ref": "B5PxOj",
+                  "name": "Detail Status Signal / Icon Component",
+                  "width": 17,
+                  "height": 17,
+                  "fill": "$color-text-strong"
+                },
+                {
+                  "id": "zCVC2",
+                  "type": "ref",
+                  "ref": "EdXKE",
+                  "name": "Detail Status Wifi / Closest Refresh Icon",
+                  "width": 17,
+                  "height": 17,
+                  "fill": "$color-text-strong"
+                },
+                {
+                  "id": "tg4u4",
+                  "type": "ref",
+                  "ref": "D1kEd",
+                  "name": "Detail Status Battery / Closest Notification Icon",
+                  "width": 22,
+                  "height": 22,
+                  "fill": "$color-text-strong"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "kvAET",
+          "type": "ref",
+          "ref": "sWO2D",
+          "name": "Event Detail Top Navigation / Component",
+          "width": "fill_container",
+          "descendants": {
+            "hFj2m": {
+              "content": "모임 상세"
+            },
+            "R7DuNK": {
+              "enabled": true,
+              "width": 40,
+              "height": 40
+            },
+            "BN53N": {
+              "enabled": true,
+              "width": 24,
+              "height": 24,
+              "fill": "$color-background-transparent"
+            }
+          }
+        },
+        {
+          "type": "frame",
+          "id": "u9ArE",
+          "name": "Event Detail Hero",
+          "clip": true,
+          "width": "fill_container",
+          "height": 248,
+          "fill": "$color-background-image-placeholder",
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "DrYAO",
+              "x": 0,
+              "y": 0,
+              "name": "Event Detail Dinner Image",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "images/generated-1785377795832.png",
+                "mode": "fill"
+              },
+              "width": 360,
+              "height": 248
+            },
+            {
+              "type": "rectangle",
+              "id": "uwS83",
+              "x": 0,
+              "y": 0,
+              "name": "Event Detail Image Shade",
+              "fill": {
+                "type": "gradient",
+                "gradientType": "linear",
+                "enabled": true,
+                "rotation": 180,
+                "size": {
+                  "height": 1
+                },
+                "colors": [
+                  {
+                    "color": "$color-overlay-transparent",
+                    "position": 0
+                  },
+                  {
+                    "color": "$color-overlay-dark-strong",
+                    "position": 1
+                  }
+                ]
+              },
+              "width": 360,
+              "height": 248
+            },
+            {
+              "type": "frame",
+              "id": "HtRTU",
+              "x": 20,
+              "y": 140,
+              "name": "Event Hero Copy",
+              "width": 320,
+              "layout": "vertical",
+              "gap": "$spacing-8",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "b97r4t",
+                  "name": "Event Hero Eyebrow",
+                  "fill": "$color-brand-300",
+                  "content": "GURO TABLE · VOL.01",
+                  "fontFamily": "$font-family",
+                  "fontSize": "$font-size-100",
+                  "fontWeight": "$font-weight-semibold",
+                  "letterSpacing": 1.1
+                },
+                {
+                  "type": "text",
+                  "id": "VvyMV",
+                  "name": "Event Hero Title",
+                  "fill": "$color-text-on-image",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "동네 미식가들과\n한 테이블에 앉는 밤",
+                  "lineHeight": "$font-line-height-tight",
+                  "fontFamily": "$font-family",
+                  "fontSize": "$font-size-500",
+                  "fontWeight": "$font-weight-bold"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "kEkqO",
+          "name": "Event Detail Content",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": "$spacing-24",
+          "padding": [
+            "$spacing-24",
+            "$spacing-20",
+            "$spacing-20",
+            "$spacing-20"
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "NCeD4",
+              "name": "Event Essential Information",
+              "width": "fill_container",
+              "stroke": "$color-border-default",
+              "strokeWidth": {
+                "bottom": 1
+              },
+              "gap": "$spacing-12",
+              "padding": [
+                0,
+                0,
+                "$spacing-20",
+                0
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f2MSD",
+                  "name": "Event Meta / DATE",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "ALh7D",
+                      "name": "Event Meta Label / DATE",
+                      "fill": "$color-text-brand",
+                      "content": "DATE",
+                      "fontFamily": "$font-family",
+                      "fontSize": 10,
+                      "fontWeight": "$font-weight-semibold",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "text",
+                      "id": "pXplx",
+                      "name": "Event Meta Value / DATE",
+                      "fill": "$color-text-default",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "8.29 금 19:30",
+                      "lineHeight": "$font-line-height-normal",
+                      "fontFamily": "$font-family",
+                      "fontSize": "$font-size-100",
+                      "fontWeight": "$font-weight-semibold"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "nQoEy",
+                  "name": "Event Meta / PLACE",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "s02DWj",
+                      "name": "Event Meta Label / PLACE",
+                      "fill": "$color-text-brand",
+                      "content": "PLACE",
+                      "fontFamily": "$font-family",
+                      "fontSize": 10,
+                      "fontWeight": "$font-weight-semibold",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "text",
+                      "id": "A3Avj",
+                      "name": "Event Meta Value / PLACE",
+                      "fill": "$color-text-default",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "구로시장 키친",
+                      "lineHeight": "$font-line-height-normal",
+                      "fontFamily": "$font-family",
+                      "fontSize": "$font-size-100",
+                      "fontWeight": "$font-weight-semibold"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Un0HT",
+                  "name": "Event Meta / SEATS",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "R7Rim",
+                      "name": "Event Meta Label / SEATS",
+                      "fill": "$color-text-brand",
+                      "content": "SEATS",
+                      "fontFamily": "$font-family",
+                      "fontSize": 10,
+                      "fontWeight": "$font-weight-semibold",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "text",
+                      "id": "oSR5M",
+                      "name": "Event Meta Value / SEATS",
+                      "fill": "$color-text-default",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "7 / 10명",
+                      "lineHeight": "$font-line-height-normal",
+                      "fontFamily": "$font-family",
+                      "fontSize": "$font-size-100",
+                      "fontWeight": "$font-weight-semibold"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "vyhdT",
+              "name": "Event Story",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": "$spacing-12",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "iaUO4",
+                  "name": "Event Story Title",
+                  "fill": "$color-text-default",
+                  "content": "이번엔 후기 너머에서 만나요",
+                  "fontFamily": "$font-family",
+                  "fontSize": "$font-size-400",
+                  "fontWeight": "$font-weight-bold"
+                },
+                {
+                  "type": "text",
+                  "id": "tOhDs",
+                  "name": "Event Story Body",
+                  "fill": "$color-text-body",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "우리가 저장해 둔 골목 맛집 이야기와 각자의 단골 메뉴를 나눕니다. 운영진이 준비한 세 가지 작은 접시를 함께 맛보며, 다음 주말의 목적지를 정해보세요.",
+                  "lineHeight": "$font-line-height-normal",
+                  "fontFamily": "$font-family",
+                  "fontSize": "$font-size-200",
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "jiqoq",
+              "name": "Event Notice",
+              "width": "fill_container",
+              "fill": "$color-background-brand-subtle",
+              "cornerRadius": 12,
+              "layout": "vertical",
+              "gap": "$spacing-8",
+              "padding": "$spacing-16",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "wTaSJ",
+                  "name": "Event Notice Title",
+                  "fill": "$color-text-default",
+                  "content": "참여 전 확인해주세요",
+                  "fontFamily": "$font-family",
+                  "fontSize": "$font-size-200",
+                  "fontWeight": "$font-weight-semibold"
+                },
+                {
+                  "type": "text",
+                  "id": "b1zLTx",
+                  "name": "Event Notice Body",
+                  "fill": "$color-text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "• 본인 1자리만 결제할 수 있어요.\n• 모임 시작 전까지 전액 환불 가능합니다.\n• 알레르기가 있다면 결제 후 운영진에게 알려주세요.",
+                  "lineHeight": 1.55,
+                  "fontFamily": "$font-family",
+                  "fontSize": "$font-size-100",
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "IlLWk",
+          "name": "Event Detail Payment Action",
+          "width": "fill_container",
+          "fill": "$color-background-surface",
+          "stroke": "$color-border-default",
+          "strokeWidth": {
+            "top": 1
+          },
+          "padding": [
+            "$spacing-12",
+            "$spacing-16",
+            "$spacing-16",
+            "$spacing-16"
+          ],
+          "children": [
+            {
+              "id": "OJnKt",
+              "type": "ref",
+              "ref": "Y37Zxm",
+              "name": "Pay Now / Primary Button Component",
+              "width": "fill_container",
+              "descendants": {
+                "W7I4F": {
+                  "enabled": false
+                },
+                "IMDnJ": {
+                  "content": "30,000원 결제하기"
+                },
+                "So75w": {
+                  "enabled": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "x5dBgE",
+          "type": "ref",
+          "ref": "BT8bi",
+          "name": "Payment Confirmation / Bottom Sheet Component",
+          "layoutPosition": "absolute",
+          "x": 0,
+          "y": 0,
+          "width": 360,
+          "height": 920,
+          "descendants": {
+            "lYIl7": {
+              "y": 500,
+              "height": 420,
+              "gap": "$spacing-20",
+              "padding": [
+                10,
+                "$spacing-20",
+                "$spacing-24",
+                "$spacing-20"
+              ]
+            },
+            "XE1dn": {
+              "fill": "$color-neutral-300"
+            },
+            "uNwjJ": {
+              "alignItems": "start",
+              "gap": "$spacing-8"
+            },
+            "SpGSy": {
+              "content": "한 자리, 곧 확정돼요",
+              "fontSize": "$font-size-400",
+              "fontWeight": "$font-weight-bold",
+              "textAlign": "left",
+              "width": "fill_container",
+              "textGrowth": "fixed-width"
+            },
+            "lgal2": {
+              "content": "8월 구로 미식 모임",
+              "textAlign": "left",
+              "fill": "$color-text-secondary"
+            },
+            "egJcg": {
+              "type": "frame",
+              "id": "cjrHo",
+              "name": "Payment Sheet Summary",
+              "width": 320,
+              "layout": "vertical",
+              "gap": "$spacing-16",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Jk7Yw",
+                  "name": "Payment Participation Status",
+                  "width": "fill_container",
+                  "fill": "$color-background-brand-subtle",
+                  "cornerRadius": 12,
+                  "layout": "vertical",
+                  "gap": "$spacing-8",
+                  "padding": "$spacing-16",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "EWAzG",
+                      "name": "Participation Status Row",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "id": "Gvp0s",
+                          "type": "ref",
+                          "ref": "I4De0F",
+                          "name": "Participation Status Label / Typography label-lg",
+                          "content": "참여 현황",
+                          "fill": "$color-text-default"
+                        },
+                        {
+                          "id": "qps5j",
+                          "type": "ref",
+                          "ref": "I4De0F",
+                          "name": "Participation Status Value / Typography label-lg",
+                          "content": "7 / 10명",
+                          "fill": "$color-text-brand"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "xBmXG",
+                      "name": "Participation Progress Track",
+                      "width": "fill_container",
+                      "height": 6,
+                      "fill": "$color-brand-100",
+                      "cornerRadius": 999,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 999,
+                          "id": "mmEYF",
+                          "x": 0,
+                          "y": 0,
+                          "name": "Participation Progress Value",
+                          "fill": "$color-background-brand-accent",
+                          "width": 204,
+                          "height": 6
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "aYDFM",
+                  "name": "Payment Price Row",
+                  "width": "fill_container",
+                  "padding": [
+                    0,
+                    4
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "id": "EuKTj",
+                      "type": "ref",
+                      "ref": "FrwjP",
+                      "name": "Payment Price Label / Typography body-md",
+                      "content": "결제 금액",
+                      "fill": "$color-text-secondary"
+                    },
+                    {
+                      "id": "NQRdd",
+                      "type": "ref",
+                      "ref": "WeeHe",
+                      "name": "Payment Price Value / Typography heading-md",
+                      "content": "30,000원",
+                      "fill": "$color-text-default"
+                    }
+                  ]
+                },
+                {
+                  "id": "mLWwj",
+                  "type": "ref",
+                  "ref": "Y37Zxm",
+                  "name": "Proceed Payment / Primary Button Component",
+                  "width": "fill_container",
+                  "descendants": {
+                    "W7I4F": {
+                      "enabled": false
+                    },
+                    "IMDnJ": {
+                      "content": "결제 진행"
+                    },
+                    "So75w": {
+                      "enabled": false
+                    }
+                  }
+                },
+                {
+                  "id": "B9Yw46",
+                  "type": "ref",
+                  "ref": "V7sCMw",
+                  "name": "Payment Terms Notice / Typography label-md",
+                  "content": "결제 진행 시 취소·환불 정책에 동의한 것으로 간주합니다.",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "textAlign": "center",
+                  "fill": "$color-text-subtle"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "fNHFr",
+      "x": 2694,
+      "y": 8643,
+      "name": "17 Payment Complete",
+      "clip": true,
+      "width": 360,
+      "height": 858,
+      "fill": "$color-background-default",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "K7ihq",
+          "name": "Payment Complete Status Bar",
+          "width": "fill_container",
+          "height": 62,
+          "padding": [
+            0,
+            "$spacing-20"
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "id": "v6pChy",
+              "type": "ref",
+              "ref": "yKsaw",
+              "name": "Detail Status Time / Typography body-lg",
+              "content": "9:20",
+              "fill": "$color-text-strong",
+              "textGrowth": "auto"
+            },
+            {
+              "type": "frame",
+              "id": "ojcF6",
+              "name": "Detail Status Icons",
+              "gap": "$spacing-8",
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "xeoHV",
+                  "type": "ref",
+                  "ref": "B5PxOj",
+                  "name": "Detail Status Signal / Icon Component",
+                  "width": 17,
+                  "height": 17,
+                  "fill": "$color-text-strong"
+                },
+                {
+                  "id": "IE7lt",
+                  "type": "ref",
+                  "ref": "EdXKE",
+                  "name": "Detail Status Wifi / Closest Refresh Icon",
+                  "width": 17,
+                  "height": 17,
+                  "fill": "$color-text-strong"
+                },
+                {
+                  "id": "TVo08",
+                  "type": "ref",
+                  "ref": "D1kEd",
+                  "name": "Detail Status Battery / Closest Notification Icon",
+                  "width": 22,
+                  "height": 22,
+                  "fill": "$color-text-strong"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Qu83f",
+          "name": "Payment Complete Content",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": "$spacing-24",
+          "padding": [
+            "$spacing-32",
+            "$spacing-20",
+            "$spacing-24",
+            "$spacing-20"
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "y0UKU",
+              "name": "Payment Complete Mark",
+              "width": 72,
+              "height": 72,
+              "fill": "$color-background-brand",
+              "cornerRadius": 999,
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "$color-shadow-action",
+                "offset": {
+                  "x": 0,
+                  "y": 8
+                },
+                "blur": 20
+              },
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "ymmqj",
+                  "type": "ref",
+                  "ref": "g193Y",
+                  "name": "Payment Complete Check / Icon Component",
+                  "width": 32,
+                  "height": 32,
+                  "fill": "$color-text-on-brand"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Yf4YC",
+              "name": "Payment Complete Introduction",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": "$spacing-8",
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "HftXC",
+                  "type": "ref",
+                  "ref": "K7uBDb",
+                  "name": "Payment Complete Title / Typography heading-lg",
+                  "content": "한 자리, 확정됐어요",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "textAlign": "center",
+                  "fill": "$color-text-default"
+                },
+                {
+                  "id": "TDhNu",
+                  "type": "ref",
+                  "ref": "FrwjP",
+                  "name": "Payment Complete Subtitle / Typography body-md",
+                  "content": "8월 구로 미식 모임에서 만나요.",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "textAlign": "center",
+                  "fill": "$color-text-secondary"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "u2zJR",
+              "name": "Payment Receipt",
+              "width": "fill_container",
+              "fill": "$color-background-surface",
+              "cornerRadius": 16,
+              "stroke": "$color-border-default",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": "$spacing-16",
+              "padding": "$spacing-20",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "g0yAX",
+                  "name": "Payment Receipt Event",
+                  "width": "fill_container",
+                  "gap": "$spacing-12",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 12,
+                      "id": "zPKzT",
+                      "name": "Payment Receipt Event Image",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "images/generated-1785377795832.png",
+                        "mode": "fill"
+                      },
+                      "width": 64,
+                      "height": 64
+                    },
+                    {
+                      "type": "frame",
+                      "id": "hf4S5",
+                      "name": "Payment Receipt Event Copy",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "id": "T2eK2",
+                          "type": "ref",
+                          "ref": "V7sCMw",
+                          "name": "Payment Receipt Eyebrow / Typography label-md",
+                          "content": "GURO TABLE · VOL.01",
+                          "fill": "$color-text-brand",
+                          "letterSpacing": 0.8,
+                          "fontWeight": "$font-weight-semibold"
+                        },
+                        {
+                          "id": "nkvKQ",
+                          "type": "ref",
+                          "ref": "lSl6h",
+                          "name": "Payment Receipt Product / Typography heading-sm",
+                          "content": "8월 구로 미식 모임",
+                          "fill": "$color-text-default"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "J0GhY",
+                  "name": "Payment Receipt Details",
+                  "width": "fill_container",
+                  "stroke": "$color-border-default",
+                  "strokeWidth": {
+                    "top": 1
+                  },
+                  "layout": "vertical",
+                  "gap": "$spacing-12",
+                  "padding": [
+                    "$spacing-16",
+                    0,
+                    0,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "VFl2o",
+                      "name": "Receipt Detail / 결제 금액",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "id": "yzgfm",
+                          "type": "ref",
+                          "ref": "V7sCMw",
+                          "name": "Receipt Label / 결제 금액 / Typography label-md",
+                          "content": "결제 금액",
+                          "fill": "$color-text-subtle"
+                        },
+                        {
+                          "id": "j40dM",
+                          "type": "ref",
+                          "ref": "V7sCMw",
+                          "name": "Receipt Value / 결제 금액 / Typography label-md",
+                          "content": "30,000원",
+                          "fill": "$color-text-default",
+                          "fontWeight": "$font-weight-semibold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "FVU5F",
+                      "name": "Receipt Detail / 결제 일시",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "id": "OdSrv",
+                          "type": "ref",
+                          "ref": "V7sCMw",
+                          "name": "Receipt Label / 결제 일시 / Typography label-md",
+                          "content": "결제 일시",
+                          "fill": "$color-text-subtle"
+                        },
+                        {
+                          "id": "nO1yP",
+                          "type": "ref",
+                          "ref": "V7sCMw",
+                          "name": "Receipt Value / 결제 일시 / Typography label-md",
+                          "content": "2026.08.13 21:04",
+                          "fill": "$color-text-default",
+                          "fontWeight": "$font-weight-semibold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "H2fCxE",
+                      "name": "Receipt Detail / 참여 일정",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "id": "GEc4X",
+                          "type": "ref",
+                          "ref": "V7sCMw",
+                          "name": "Receipt Label / 참여 일정 / Typography label-md",
+                          "content": "참여 일정",
+                          "fill": "$color-text-subtle"
+                        },
+                        {
+                          "id": "wssQ6",
+                          "type": "ref",
+                          "ref": "V7sCMw",
+                          "name": "Receipt Value / 참여 일정 / Typography label-md",
+                          "content": "2026.08.29 19:30",
+                          "fill": "$color-text-default",
+                          "fontWeight": "$font-weight-semibold"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "QIyXI",
+              "name": "Payment Complete Actions",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": "$spacing-12",
+              "children": [
+                {
+                  "id": "tKw3p",
+                  "type": "ref",
+                  "ref": "Y37Zxm",
+                  "name": "View Payment History / Primary Button Component",
+                  "width": "fill_container",
+                  "descendants": {
+                    "W7I4F": {
+                      "enabled": false
+                    },
+                    "IMDnJ": {
+                      "content": "결제 내역 보기"
+                    },
+                    "So75w": {
+                      "enabled": false
+                    }
+                  }
+                },
+                {
+                  "id": "t6aZLw",
+                  "type": "ref",
+                  "ref": "Uix0H",
+                  "name": "Back Home / Secondary Button Component",
+                  "width": "fill_container",
+                  "descendants": {
+                    "Z8GaF": {
+                      "enabled": false
+                    },
+                    "C4Inf": {
+                      "content": "홈으로"
+                    },
+                    "CTvAJ": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ]
             }
           ]
         }

@@ -16,6 +16,7 @@ const meta = {
   },
   argTypes: {
     position: { control: 'inline-radio', options: ['absolute', 'fixed'] },
+    align: { control: 'inline-radio', options: ['center', 'start'] },
   },
   decorators: [
     (Story) => (
@@ -53,6 +54,24 @@ export const AsSelectPanel: Story = {
         <SelectItem label="영등포구" state="selected" />
         <SelectItem label="금천구" />
       </SelectList>
+    </BottomSheet>
+  ),
+};
+
+/**
+ * `.pen` `16 Payment Sheet` left-aligns its header instead of centring it —
+ * that variant is `align="start"`. (The payment page styles its title a step
+ * larger; the component keeps the sheet's own `heading-sm` title style.)
+ */
+export const AlignStart: Story = {
+  args: {
+    align: 'start',
+    title: '한 자리, 곧 확정돼요',
+    description: '8월 구로 미식 모임',
+  },
+  render: (args) => (
+    <BottomSheet {...args}>
+      <p className="type-body-md text-text-secondary">결제 요약이 들어갑니다.</p>
     </BottomSheet>
   ),
 };

@@ -148,7 +148,9 @@
   --color-text-information: var(--color-blue-700);
 
   /* -- Semantic · Background ----------------------------------------------- */
-  --color-background-default: var(--color-neutral-50);
+  /* 원래 .pen 토큰은 웜톤 neutral-50(#FFFDF9)이지만, 화면 배경을 순백으로
+     쓰기로 해(제품 결정) neutral-0으로 오버라이드한다. */
+  --color-background-default: var(--color-neutral-0);
   --color-background-surface: var(--color-neutral-0);
   --color-background-elevated: var(--color-neutral-50);
   --color-background-subtle: var(--color-neutral-100);
@@ -164,6 +166,9 @@
   --color-background-image-placeholder: var(--color-neutral-300);
   --color-background-image-placeholder-warm: var(--color-brand-100);
   --color-background-transparent: var(--color-alpha-white-0);
+  /* 스켈레톤 전용(제품 결정, .pen 토큰 아님): neutral 스케일은 웜 그레이라
+     큰 면적에서 베이지로 읽혀, 스켈레톤만 무채색 쿨 그레이를 쓴다. */
+  --color-background-skeleton: #ececec;
 
   /* -- Semantic · Border --------------------------------------------------- */
   --color-border-default: var(--color-neutral-200);
@@ -329,6 +334,62 @@
 }
 
 /* ============================================================================
+   APP SHELL SCROLL
+   앱 셸에서 본문 스크롤 영역의 스크롤바를 숨긴다 — 스크롤 기능은 그대로다.
+   ========================================================================== */
+@utility scrollbar-hidden {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ============================================================================
+   SKELETON SHIMMER
+   회색(`background-disabled`) 블록 위로 흰 빛줄기가 좌상→우하로 쓸고 지나가는
+   로딩 반짝임. Skeleton 컴포넌트 전용이며, 모션 최소화 설정에서는 멈춘 단색
+   블록으로 남는다.
+   ========================================================================== */
+@keyframes skeleton-shimmer {
+  to {
+    transform: translate(100%, 100%);
+  }
+}
+
+@utility skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    /* 요소의 2배 크기로 키워 스윕 중 띠의 끝 모서리가 화면에 드러나지 않게 한다.
+       덩달아 띠 두께·번짐 거리도 2배가 된다. */
+    inset: -50%;
+    /* 105deg: 45° 띠를 좌상 쪽으로 30° 더 세운 선. 흰 코어 양옆에 60% 흰색
+       어깨를 둬 번지는 글로우로 만든다. 0.8s + ease-out(빠르게 출발) 스윕. */
+    background: linear-gradient(
+      105deg,
+      transparent 45%,
+      var(--color-overlay-light-strong) 47.5%,
+      var(--color-neutral-0) 50%,
+      var(--color-overlay-light-strong) 52.5%,
+      transparent 55%
+    );
+    transform: translate(-100%, -100%);
+    animation: skeleton-shimmer 0.8s ease-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::after {
+      animation: none;
+    }
+  }
+}
+
+/* ============================================================================
    BASE
    design.pen defines a single light theme, so there is no dark-mode override:
    a `prefers-color-scheme` flip would resolve to colours outside the token set.
@@ -337,4 +398,7 @@ body {
   background: var(--color-background-default);
   color: var(--color-text-default);
   font-family: var(--font-family);
+  /* 더블탭 줌 방지 — viewport user-scalable=no를 무시하는 브라우저(iOS Safari
+     탭 등)에서도 더블탭 확대는 이걸로 막힌다. 탭·팬 제스처는 그대로 동작한다. */
+  touch-action: manipulation;
 }

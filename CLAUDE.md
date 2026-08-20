@@ -17,6 +17,12 @@
 - 서버 클라이언트는 `src/lib/supabase/server.ts`의 `createClient()`를 재사용한다(요청마다 새로 생성됨).
 - 세션 갱신은 `src/proxy.ts` → `src/lib/supabase/proxy.ts`(`updateSession`)가 담당한다. 이 파일들의 쿠키 처리 로직을 임의로 수정하지 않는다.
 
+# 결제 규칙 (SSOT)
+
+- 결제 관련 모든 기능(결제 요청·검증·기록·취소·웹훅)은 `rules/payment.md`가 SSOT다.
+- 결제 관련 코드를 만들거나 수정하기 전에 반드시 `rules/payment.md`를 읽고 따른다.
+- 규칙과 다르게 구현해야 한다면 `rules/payment.md`를 먼저 갱신한 뒤 코드를 맞춘다.
+
 # 해상도 가이드
 
 - 모바일 퍼스트, 태블릿·데스크톱까지 반응형으로 커버한다.

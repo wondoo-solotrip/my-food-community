@@ -41,7 +41,9 @@ const MAP_IMAGE: Record<NaverMapVariant, string> = {
 
 const FRAME: Record<NaverMapVariant, string> = {
   full: 'h-[540px] border-y border-naver-map-border',
-  mini: 'h-45 rounded-xl border border-border-default',
+  // 고정 높이(180px) 대신 모바일 구도(335×180)의 비율 고정 — 칼럼이 넓어져도
+  // 지도가 납작해지지 않는다.
+  mini: 'aspect-[15/8] rounded-xl border border-border-default',
 };
 
 export interface NaverMapBadgeProps {
@@ -87,10 +89,11 @@ export interface NaverMapProps {
    * 없이 정적 목업으로 그린다(지도 연동 전 글 폴백).
    */
   center?: NaverMapCoord;
-  /** 마커 위 라벨 필의 텍스트. 목업에서는 생략 시 선택 전 상태로 보고 마커를 그리지 않는다. */
-  pinLabel?: string;
-  /** 라벨 앞 16px 아이콘 — 장소 등록 화면의 선택 완료 체크(`check`). */
-  pinLabelIcon?: string;
+  /**
+   * 목업 폴백에서 중앙 마커를 그릴지 — 실지도는 항상 중앙 마커를 그린다.
+   * 선택 전 상태의 목업은 `false`로 두어 마커를 숨긴다.
+   */
+  pin?: boolean;
   /**
    * 실지도(`full` live) 전용 — 지도 이동·줌이 멈출 때(idle)와 지도 생성 직후
    * 중심 좌표를 알린다. 핀이 중앙 고정이라 이 좌표가 곧 핀 위치다.
@@ -104,8 +107,7 @@ export interface NaverMapProps {
 export function NaverMap({
   variant = 'full',
   center,
-  pinLabel,
-  pinLabelIcon,
+  pin = false,
   onCenterChanged,
   className,
   children,
@@ -199,8 +201,9 @@ export function NaverMap({
 
   const isLive = mode === 'live';
   const isFallback = mode === 'fallback';
-  // 실지도는 핀을 항상 중앙에 고정하고, 목업은 기존대로 라벨이 있을 때만 그린다.
-  const showPin = wantsLive && !isFallback ? true : Boolean(pinLabel);
+  // 실지도는 핀을 항상 중앙에 고정하고, 목업 폴백은 `pin`일 때만 그린다.
+  // 로딩(스켈레톤) 중에는 핀을 숨긴다.
+  const showPin = isLive || (isFallback && pin);
 
   return (
     <div
@@ -216,6 +219,11 @@ export function NaverMap({
         <div ref={mapElRef} aria-label="네이버 지도" className="size-full" />
       )}
 
+      {/* SDK가 뜨기 전에는 셔머 스켈레톤으로 덮는다 — live가 되면 걷힌다. */}
+      {mode === 'loading' && (
+        <div aria-hidden className="skeleton-shimmer absolute inset-0 z-10 bg-background-skeleton" />
+      )}
+
       {isFallback && (
         <Image
           src={MAP_IMAGE[variant]}
@@ -226,26 +234,17 @@ export function NaverMap({
         />
       )}
 
-      {/* 선택 위치 마커 + 라벨 — 지도 정중앙 고정. 파란 기본 마커(물방울 핀)의
-          꼬리 끝이 좌표를 가리키고, 장소명 라벨은 마커 위에 뜬다. 드래그가
-          통과하도록 클릭을 막지 않는다. */}
+      {/* 선택 위치 마커 — 지도 정중앙 고정. 파란 기본 마커(물방울 핀)의
+          꼬리 끝이 좌표를 가리킨다. 드래그가 통과하도록 클릭을 막지 않는다. */}
       {showPin && (
         <div
           className={cn(
-            'pointer-events-none absolute top-1/2 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1.5',
-            // 실지도에서는 마커 꼬리 끝이 지도 중심(좌표)과 일치하도록 그룹
+            'pointer-events-none absolute top-1/2 left-1/2 z-10 -translate-x-1/2',
+            // 실지도에서는 마커 꼬리 끝이 지도 중심(좌표)과 일치하도록 마커
             // 높이만큼 올린다. 목업 폴백은 기존 구도대로 가운데 정렬.
             isLive ? '-translate-y-full' : '-translate-y-1/2',
           )}
         >
-          {pinLabel && (
-            <span className="flex h-8 items-center gap-1.5 rounded-full border border-border-default bg-background-surface px-3.5">
-              {pinLabelIcon && (
-                <Icon name={pinLabelIcon} size={16} className="text-text-brand" />
-              )}
-              <span className="type-label-md text-text-default">{pinLabel}</span>
-            </span>
-          )}
           <svg
             width="32"
             height="42"

@@ -74,3 +74,11 @@ export const AllVariants: Story = {
 export const WithoutCounter: Story = {
   args: { showCounter: false },
 };
+
+/**
+ * `focusRing={false}` — 포커스해도 파란 테두리 강조가 없다. 등록 폼의 내용
+ * 필드처럼 조용히 머물러야 하는 필드가 쓴다.
+ */
+export const NoFocusRing: Story = {
+  args: { focusRing: false },
+};

@@ -95,9 +95,9 @@ export function PlaceForm({ place }: PlaceFormProps) {
 
   const validate = (): FieldErrors => {
     const next: FieldErrors = {};
-    if (!title.trim()) next.title = '맛집 이름을 입력해주세요.';
+    if (!title.trim()) next.title = '제목을 입력해주세요.';
     if (content.trim().length < CONTENT_MIN) {
-      next.content = `맛집 내용을 ${CONTENT_MIN}자 이상 입력해주세요.`;
+      next.content = `내용을 ${CONTENT_MIN}자 이상 입력해주세요.`;
     }
     if (!isEdit && files.length === 0) next.images = '사진을 1장 이상 올려주세요.';
     if (files.length > IMAGE_MAX_COUNT) {
@@ -166,12 +166,8 @@ export function PlaceForm({ place }: PlaceFormProps) {
       {toast && <Toast type="error" message={toast} onClose={() => setToast(null)} />}
 
       <section className="flex flex-col gap-2">
-        <div className="flex items-center justify-between">
-          <h2 className="type-heading-sm text-text-default">사진</h2>
-          <span className={`type-label-md ${errors.images ? 'text-text-error' : 'text-text-secondary'}`}>
-            {isEdit ? '선택' : '필수'}
-          </span>
-        </div>
+        {/* 필드 라벨(type-label-lg)과 같은 타이포로 맞춘다. */}
+        <h2 className="type-label-lg text-text-default">사진</h2>
         <FileUploader
           state={isSaving ? 'disabled' : errors.images ? 'error' : 'default'}
           helper={uploaderHelper}
@@ -212,7 +208,9 @@ export function PlaceForm({ place }: PlaceFormProps) {
 
       <div className="flex flex-col gap-4">
         <TextField
-          label="맛집 이름"
+          label="제목"
+          placeholder="제목을 입력하세요."
+          focusRing={false}
           value={title}
           maxLength={TITLE_MAX}
           state={errors.title ? 'error' : isSaving ? 'disabled' : 'default'}
@@ -225,7 +223,9 @@ export function PlaceForm({ place }: PlaceFormProps) {
           }}
         />
         <Textarea
-          label="맛집 내용"
+          label="내용"
+          placeholder="내용을 입력하세요."
+          focusRing={false}
           value={content}
           state={errors.content ? 'error' : isSaving ? 'disabled' : 'default'}
           helper={`${CONTENT_MIN}자 이상 적어주세요`}
@@ -243,19 +243,12 @@ export function PlaceForm({ place }: PlaceFormProps) {
       {/* `.pen` 06 맛집 등록 / 장소 입력 추가 — 내용과 제출 사이의 장소 진입점.
           지도 정보가 필수라 사진 섹션과 같은 필수 표기·오류 안내를 붙인다. */}
       <section className="flex flex-col gap-2">
-        <div className="flex items-center justify-between">
-          <h2 className="type-heading-sm text-text-default">장소</h2>
-          <span
-            className={`type-label-md ${errors.place ? 'text-text-error' : 'text-text-secondary'}`}
-          >
-            필수
-          </span>
-        </div>
+        {/* 필드 라벨(type-label-lg)과 같은 타이포로 맞춘다. */}
+        <h2 className="type-label-lg text-text-default">장소</h2>
         {selection && <AddressRow text={selection.address} tone="secondary" />}
         <Button
           variant="secondary"
           size="lg"
-          leadingIcon="plus"
           trailingIcon="arrow-right"
           disabled={isSaving}
           className="w-full"

@@ -6,8 +6,8 @@
  *
  * 장소 등록 지도(07)의 검색 필드를 눌렀을 때 열리는 화면. `GET
  * /api/places/search`(BFF, 네이버 지역 검색 프록시)를 300ms 디바운스로
- * 호출한다. 결과가 있으면 목록에서 골라 "선택한 장소 사용하기"로 장소명·지번
- * 주소·좌표를 들고 지도(07)로 돌아가고, 없으면(또는 검색이 설정되지 않았으면)
+ * 호출한다. 결과가 있으면 목록에서 누르는 즉시 장소명·지번 주소·좌표를 들고
+ * 지도(07)로 돌아가고, 없으면(또는 검색이 설정되지 않았으면)
  * 장소명 직접 입력으로 "장소명으로 등록하기"까지 이어진다 — 이때는 장소명만
  * 들고 지도(07)로 돌아가며, 지도 정보가 필수라 지도를 움직여 주소·좌표를
  * 확정해야 등록할 수 있다.
@@ -17,7 +17,7 @@
  */
 import { useEffect, useRef, useState } from 'react';
 
-import { Button, EmptyState, Icon, TextField, TopNavigation, cn } from '@/components';
+import { Button, EmptyState, Icon, TextField, TopNavigation } from '@/components';
 import type { PlaceSearchResult } from '@/lib/places';
 
 const SEARCH_DEBOUNCE_MS = 300;
@@ -25,7 +25,7 @@ const SEARCH_DEBOUNCE_MS = 300;
 export interface PlaceSearchViewProps {
   /** 뒤로 가기 — 장소 등록 지도(07)로 돌아간다. */
   onBack: () => void;
-  /** 검색 결과에서 고른 장소로 "선택한 장소 사용하기"를 눌렀을 때. */
+  /** 검색 결과 항목을 눌렀을 때 — 누르는 즉시 그 장소를 들고 지도(07)로 돌아간다. */
   onSelect: (place: PlaceSearchResult) => void;
   /** 결과 없음에서 "장소명으로 등록하기"를 눌렀을 때. 이름만 넘기고 주소·좌표는 지도(07)에서 확정한다. */
   onRegisterName: (name: string) => void;
@@ -44,7 +44,6 @@ export function PlaceSearchView({
   const [query, setQuery] = useState(initialQuery);
   // null이면 아직 검색 전(대기 상태), 빈 배열이면 결과 없음.
   const [results, setResults] = useState<PlaceSearchResult[] | null>(initialResults ?? null);
-  const [selectedIndex, setSelectedIndex] = useState(0);
   // 디자인 09: 결과 없음으로 떨어지면 장소명 필드를 검색어로 미리 채운다.
   const [directName, setDirectName] = useState(
     initialResults !== undefined && initialResults.length === 0 ? initialQuery : '',
@@ -80,14 +79,12 @@ export function PlaceSearchView({
       }
       if (id !== requestId.current) return;
       setResults(next);
-      setSelectedIndex(0);
       if (next.length === 0) setDirectName(trimmed);
     }, SEARCH_DEBOUNCE_MS);
     return () => clearTimeout(timer);
   }, [query]);
 
   const isEmpty = results !== null && results.length === 0;
-  const selected = results?.[selectedIndex];
 
   return (
     <div className="mx-auto flex min-h-dvh w-full max-w-[1280px] flex-col">
@@ -96,10 +93,12 @@ export function PlaceSearchView({
         leading={{ icon: 'arrow-left', label: '뒤로 가기', onClick: onBack }}
       />
 
-      <main className="mx-auto flex w-full max-w-[640px] flex-1 flex-col gap-5 px-4 pt-2 pb-6">
+      <main className="mx-auto flex w-full max-w-[640px] flex-1 flex-col gap-3 px-4 pt-2 pb-6">
         <TextField
           label="장소 검색"
           leadingIcon="search"
+          placeholder="대부도손칼국수"
+          focusRing={false}
           value={query}
           helper={
             isEmpty ? '네이버에서 검색된 장소가 없습니다.' : '네이버에서 장소명과 주소를 검색합니다.'
@@ -113,81 +112,38 @@ export function PlaceSearchView({
         />
 
         {results !== null && results.length > 0 && (
-          <>
-            <section className="flex flex-col gap-4" aria-label="네이버 검색 결과">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <span aria-hidden className="type-heading-sm text-naver-green">
-                    N
-                  </span>
-                  <h2 className="type-heading-sm text-text-default">네이버 검색 결과</h2>
-                </div>
-                <span className="type-label-md text-text-secondary">{results.length}개</span>
-              </div>
+          <section className="flex flex-col gap-4" aria-label="장소 검색 결과">
+            <ul>
+              {results.map((result) => (
+                <li
+                  key={`${result.name}-${result.jibunAddress}`}
+                  className="border-b border-border-default last:border-b-0"
+                >
+                  {/* 별도 확정 버튼 없이 항목을 누르는 즉시 지도(07)로 돌아간다. */}
+                  <button
+                    type="button"
+                    onClick={() => onSelect(result)}
+                    className="flex w-full items-center gap-3 py-3 text-left"
+                  >
+                    <span className="flex min-w-0 flex-1 flex-col gap-[3px]">
+                      <span className="type-body-lg text-text-default">{result.name}</span>
+                      <span className="type-body-md truncate text-text-secondary">
+                        {result.roadAddress || result.jibunAddress}
+                      </span>
+                    </span>
+                    <Icon name="chevron-right" size={16} className="text-text-secondary" />
+                  </button>
+                </li>
+              ))}
+            </ul>
 
-              <ul>
-                {results.map((result, index) => {
-                  const isSelected = index === selectedIndex;
-                  return (
-                    <li
-                      key={`${result.name}-${result.jibunAddress}`}
-                      className="border-b border-border-default last:border-b-0"
-                    >
-                      <button
-                        type="button"
-                        aria-pressed={isSelected}
-                        onClick={() => setSelectedIndex(index)}
-                        className="flex w-full items-center gap-3 py-3 text-left"
-                      >
-                        <span className="flex size-7 shrink-0 items-center justify-center">
-                          <Icon
-                            name="home"
-                            size={20}
-                            className={isSelected ? 'text-naver-green' : 'text-text-secondary'}
-                          />
-                        </span>
-                        <span className="flex min-w-0 flex-1 flex-col gap-[3px]">
-                          <span
-                            className={cn(
-                              'type-heading-sm',
-                              isSelected ? 'text-naver-green' : 'text-text-default',
-                            )}
-                          >
-                            {result.name}
-                          </span>
-                          <span className="type-body-md truncate text-text-secondary">
-                            {result.roadAddress || result.jibunAddress}
-                          </span>
-                        </span>
-                        <Icon
-                          name="chevron-right"
-                          size={16}
-                          className={isSelected ? 'text-naver-green' : 'text-text-secondary'}
-                        />
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-
-              <div className="flex items-center gap-2 rounded-[10px] bg-background-subtle p-3">
-                <Icon name="info" size={16} className="shrink-0 text-text-information" />
-                <p className="type-label-md flex-1 text-text-secondary">
-                  네이버 지역 검색 API에서 제공한 장소명과 주소입니다.
-                </p>
-              </div>
-            </section>
-
-            <Button
-              size="lg"
-              leadingIcon="check"
-              className="w-full"
-              disabled={!selected}
-              onClick={() => selected && onSelect(selected)}
-            >
-              선택한 장소 사용하기
-            </Button>
-          </>
+            <div className="flex items-center gap-2 rounded-[10px] bg-background-subtle p-3">
+              <Icon name="info" size={16} className="shrink-0 text-text-information" />
+              <p className="type-label-md flex-1 text-text-secondary">
+                네이버 지역 검색 API에서 제공한 장소명과 주소입니다.
+              </p>
+            </div>
+          </section>
         )}
 
         {isEmpty && (
@@ -200,9 +156,8 @@ export function PlaceSearchView({
             />
 
             <section className="flex flex-col gap-2" aria-label="장소명 직접 입력">
-              <h2 className="type-heading-sm text-text-default">장소명 직접 입력</h2>
               <TextField
-                label="장소명"
+                label="장소명 직접 입력"
                 leadingIcon="edit"
                 value={directName}
                 helper="장소명을 입력한 뒤 지도에서 위치를 지정해 주소를 채웁니다."

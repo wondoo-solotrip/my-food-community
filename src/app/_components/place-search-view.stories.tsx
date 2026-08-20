@@ -31,19 +31,16 @@ type Story = StoryObj<typeof meta>;
 /** 검색 전 대기 상태 — 안내 헬퍼만 보인다. */
 export const Default: Story = {};
 
-/** `.pen` 08 — 네이버 검색 결과 목록. 첫 결과가 선택된 상태로 시작한다. */
+/** `.pen` 08 — 검색 결과 목록. 항목을 누르는 즉시 그 장소를 들고 지도(07)로 돌아간다. */
 export const Results: Story = {
   args: { initialQuery: '서울시청', initialResults: RESULTS },
   play: async ({ canvas, args }) => {
-    await expect(canvas.getByText('네이버 검색 결과')).toBeVisible();
-    await expect(canvas.getByText('4개')).toBeVisible();
     await expect(
       canvas.getByText('네이버 지역 검색 API에서 제공한 장소명과 주소입니다.'),
     ).toBeVisible();
 
-    // 두 번째 결과로 선택을 옮긴 뒤 사용하기를 누르면 그 결과가 넘어간다.
+    // 항목을 누르면 별도 확정 버튼 없이 바로 그 결과가 넘어간다.
     await userEvent.click(canvas.getByRole('button', { name: /서울도서관/ }));
-    await userEvent.click(canvas.getByRole('button', { name: '선택한 장소 사용하기' }));
     await expect(args.onSelect).toHaveBeenCalledWith(RESULTS[1]);
   },
 };
@@ -60,7 +57,7 @@ export const NoResults: Story = {
     await expect(
       canvas.getByText('직접 입력한 장소는 지도에서 위치를 지정해 주소를 확인해야 등록할 수 있습니다.'),
     ).toBeVisible();
-    await expect(canvas.getByLabelText('장소명')).toHaveValue('우리동네 비밀식당');
+    await expect(canvas.getByLabelText('장소명 직접 입력')).toHaveValue('우리동네 비밀식당');
 
     await userEvent.click(canvas.getByRole('button', { name: '장소명으로 등록하기' }));
     await expect(args.onRegisterName).toHaveBeenCalledWith('우리동네 비밀식당');

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { expect } from 'storybook/test';
+import { expect, waitFor } from 'storybook/test';
 
 import { RESTAURANTS } from '@/lib/restaurants';
 import type { PlaceDetail } from '@/lib/places';
@@ -63,10 +63,10 @@ export const WithLocation: Story = {
   },
   play: async ({ canvas }) => {
     await expect(canvas.getByRole('heading', { name: '위치' })).toBeVisible();
-    await expect(canvas.getByText('NAVER 지도')).toBeVisible();
     await expect(canvas.getByText('서울특별시 마포구 동교동 168-25')).toBeVisible();
     // 히어로 제목에 더해 마커 라벨에도 DB에 저장된 장소명이 보인다.
-    await expect(canvas.getAllByText(RESTAURANTS[0].name)).toHaveLength(2);
+    // 지도 SDK 폴백이 끝나야 핀 라벨이 뜬다(로딩 중에는 핀을 숨김) — 대기 후 단언.
+    await waitFor(() => expect(canvas.getAllByText(RESTAURANTS[0].name)).toHaveLength(2));
   },
 };
 

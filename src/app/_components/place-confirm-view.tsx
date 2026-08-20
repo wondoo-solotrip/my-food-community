@@ -105,13 +105,14 @@ export function PlaceConfirmView({ place, onSearch, onBack, onConfirm }: PlaceCo
               ? { lat: place.lat, lng: place.lng }
               : undefined
           }
-          pinLabel={place?.name}
-          pinLabelIcon={place ? 'check' : undefined}
+          pin={Boolean(place)}
           onCenterChanged={handleCenterChanged}
         >
           <button
             type="button"
             onClick={onSearch}
+            // 보이는 문구는 예시 검색어(플레이스홀더)라 접근성 이름은 기능명으로 유지한다.
+            aria-label={place ? undefined : '장소 검색'}
             className="absolute inset-x-4 top-4 z-10 flex h-10 items-center gap-2 rounded-xl border border-border-default bg-background-surface px-3 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-focus"
           >
             <Icon name="search" size={20} className="shrink-0 text-text-secondary" />
@@ -121,7 +122,7 @@ export function PlaceConfirmView({ place, onSearch, onBack, onConfirm }: PlaceCo
                 place ? 'text-text-default' : 'text-text-subtle',
               )}
             >
-              {place ? place.name : '장소 검색'}
+              {place ? place.name : '대부도손칼국수'}
             </span>
             {place && <span className="sr-only">— 장소 다시 검색</span>}
           </button>

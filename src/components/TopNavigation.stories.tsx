@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
+import { Icon } from './Icon';
 import { TopNavigation } from './navigation';
 import { Stack } from './docs/Matrix';
 
@@ -56,5 +57,28 @@ export const Slots: Story = {
         </div>
       ))}
     </Stack>
+  ),
+};
+
+/**
+ * `trailingContent` — 아이콘 버튼 대신 커스텀 노드를 트레일링 슬롯에 그대로
+ * 놓는다. 웹 마이페이지가 바텀 내비의 홈 항목(20px 아이콘 + 12px 라벨)을
+ * 이 슬롯으로 옮겨 쓰는 형태.
+ */
+export const CustomTrailing: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <TopNavigation
+      title="마이페이지"
+      trailingContent={
+        <button
+          type="button"
+          className="flex flex-col items-center justify-center gap-0.5 text-text-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-focus"
+        >
+          <Icon name="home" size={20} />
+          <span className="type-label-md">홈</span>
+        </button>
+      }
+    />
   ),
 };

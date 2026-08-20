@@ -19,10 +19,13 @@ export function AppBottomNav() {
   const activeIndex = pathname.startsWith('/my') ? 1 : 0;
 
   return (
+    // 앱 셸(h-dvh + main 스크롤) 밖의 고정 슬롯에 놓이므로 별도 포지셔닝이 필요 없다.
+    // 웹(md+)에서는 어느 페이지든 바텀 내비를 쓰지 않는다 — 헤더 쪽 진입점이 대신한다.
     <BottomNavigation
       items={ITEMS}
       activeIndex={activeIndex}
       onSelect={(index) => router.push(ITEMS[index].href)}
+      className="md:hidden"
     />
   );
 }

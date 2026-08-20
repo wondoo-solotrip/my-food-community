@@ -205,7 +205,9 @@ export const SEMANTIC_GROUPS: SemanticGroup[] = [
     ['information', 'blue-700', '안내 메시지'],
   ]),
   group('background', 'Background', '면 색상. 표면 위계와 상태 배너에 사용합니다.', 'background', [
-    ['default', 'neutral-50', '페이지 기본 배경'],
+    // .pen 원본은 neutral-50이지만 화면 배경을 순백으로 쓰기로 해(제품 결정)
+    // globals.css와 함께 neutral-0으로 오버라이드됐다.
+    ['default', 'neutral-0', '페이지 기본 배경'],
     ['surface', 'neutral-0', '카드, 시트 표면'],
     ['elevated', 'neutral-50', '떠 있는 표면 (모달, 팝오버)'],
     ['subtle', 'neutral-100', '약한 구분 배경'],

@@ -72,6 +72,7 @@ export { Skeleton, type SkeletonProps, type SkeletonVariant } from './Skeleton';
 export { Toast, type ToastProps, type ToastType, type ToastViewport } from './Toast';
 
 /* Etc */
+export { ArtDirectedImage, type ArtDirectedImageProps } from './ArtDirectedImage';
 export { Card, type CardOrientation, type CardProps } from './Card';
 export { Badge, type BadgeProps, type BadgeSize, type BadgeType } from './Badge';
 export { EmptyState, type EmptyStateAction, type EmptyStateProps } from './EmptyState';

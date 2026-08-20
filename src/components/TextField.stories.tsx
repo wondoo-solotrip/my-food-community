@@ -112,6 +112,24 @@ export const HiddenLabel: Story = {
 };
 
 /**
+ * `focusRing={false}` — 포커스해도 파란 테두리 강조가 없다. 메인 검색창처럼
+ * 조용히 머물러야 하는 필드가 쓴다.
+ */
+export const NoFocusRing: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <TextField
+      label="맛집 검색"
+      hideLabel
+      size="lg"
+      leadingIcon="search"
+      placeholder="가족 외식, 주차 가능, 조용한 골목"
+      focusRing={false}
+    />
+  ),
+};
+
+/**
  * `trailingAction` turns the trailing slot into a real button — `.pen`
  * 08 장소 검색의 입력 지우기(X)가 이 형태다. 장식용 `trailingIcon`과 달리
  * 라벨과 클릭 동작을 갖는다.

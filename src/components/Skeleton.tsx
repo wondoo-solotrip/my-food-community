@@ -1,9 +1,13 @@
 /**
  * Skeleton — `.pen`: `Skeleton / {Text | Rectangle | Circle}`.
  *
- * All three are `color-background-disabled` blocks; only the geometry differs, and
- * per the guide that geometry comes from whatever element is being stood in for.
- * The defaults below are the sizes the design file happens to draw.
+ * All three are `color-background-skeleton` blocks(.pen의 disabled 웜 그레이는
+ * 큰 면적에서 베이지로 읽혀 스켈레톤만 쿨 그레이 전용 토큰을 쓴다); only the
+ * geometry differs, and per the guide that geometry comes from whatever element
+ * is being stood in for. The defaults below are the sizes the design file draws.
+ *
+ * 정적인 단색 블록 위로 흰 빛줄기가 좌상→우하로 지나가는 shimmer
+ * (`skeleton-shimmer`, globals.css)를 얹는다 — 모션 최소화 설정에서는 꺼진다.
  */
 import { cn } from './cn';
 
@@ -35,7 +39,7 @@ export function Skeleton({
   if (variant === 'text') {
     return (
       <div
-        className={cn('flex flex-col gap-2', className)}
+        className={cn('flex shrink-0 flex-col gap-2', className)}
         style={{ width: width ?? 280, ...style }}
         aria-hidden="true"
         {...rest}
@@ -43,7 +47,7 @@ export function Skeleton({
         {Array.from({ length: lines }, (_, i) => (
           <div
             key={i}
-            className="h-4 rounded-sm bg-background-disabled"
+            className="skeleton-shimmer h-4 rounded-sm bg-background-skeleton"
             style={{ width: TEXT_LINE_WIDTHS[i % TEXT_LINE_WIDTHS.length] }}
           />
         ))}
@@ -54,7 +58,7 @@ export function Skeleton({
   if (variant === 'circle') {
     return (
       <div
-        className={cn('rounded-full bg-background-disabled', className)}
+        className={cn('skeleton-shimmer shrink-0 rounded-full bg-background-skeleton', className)}
         style={{ width: size, height: size, ...style }}
         aria-hidden="true"
         {...rest}
@@ -64,7 +68,8 @@ export function Skeleton({
 
   return (
     <div
-      className={cn('rounded-xl bg-background-disabled', className)}
+      // 스탠드인은 스크롤 컨테이너(flex) 안에서도 절대 짜부라지면 안 된다.
+      className={cn('skeleton-shimmer shrink-0 rounded-xl bg-background-skeleton', className)}
       style={{ width: width ?? 280, height: height ?? 120, ...style }}
       aria-hidden="true"
       {...rest}

@@ -15,9 +15,11 @@ export interface AppTopNavProps {
   backHref?: string;
   /** Trailing icon action (`search`, `close`, …). Omit to hide the slot. */
   trailing?: { icon: string; label: string; href: string };
+  /** 트레일링 슬롯 커스텀 노드 — `trailing` 아이콘 버튼 대신 그대로 배치한다. */
+  trailingContent?: React.ReactNode;
 }
 
-export function AppTopNav({ title, backHref, trailing }: AppTopNavProps) {
+export function AppTopNav({ title, backHref, trailing, trailingContent }: AppTopNavProps) {
   const router = useRouter();
 
   return (
@@ -33,6 +35,7 @@ export function AppTopNav({ title, backHref, trailing }: AppTopNavProps) {
           ? { icon: trailing.icon, label: trailing.label, onClick: () => router.push(trailing.href) }
           : undefined
       }
+      trailingContent={trailingContent}
     />
   );
 }

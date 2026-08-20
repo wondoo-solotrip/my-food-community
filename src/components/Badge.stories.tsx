@@ -54,3 +54,28 @@ export const AllVariants: Story = {
     />
   ),
 };
+
+/**
+ * `filled` — 외곽선 대신 상태색 배경으로 채운 변형. 외곽선 버튼(결제 취소 등)
+ * 옆에서 배지가 버튼처럼 읽히지 않아야 할 때 쓴다.
+ */
+export const Filled: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <Matrix
+      rows={TYPES}
+      columns={['md (20)', 'lg (24)']}
+      render={(row, column) => {
+        const type = row as BadgeType;
+        return (
+          <Badge
+            label={LABEL[type]}
+            type={type}
+            filled
+            size={column.startsWith('md') ? ('md' as BadgeSize) : ('lg' as BadgeSize)}
+          />
+        );
+      }}
+    />
+  ),
+};

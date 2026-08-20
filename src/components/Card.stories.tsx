@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 import { Badge } from './Badge';
 import { Card } from './Card';
+import { IconButton } from './IconButton';
 import { Matrix } from './docs/Matrix';
 
 const meta = {
@@ -58,16 +59,33 @@ export const WithAndWithoutImage: Story = {
 
 /**
  * `.pen` my-page instances lay the card out horizontally: a 96px square photo
- * on the left, tightened content (`p-3 gap-1`), no description.
+ * on the left, tightened content, no description. 마이페이지는 사진 우측에도
+ * 라운드를 주고(`rounded-r-2xl`), 글자 블록의 위 패딩을 없애 제목을 사진 상단
+ * 라인에 맞추며, 날짜는 아이콘 없이 텍스트만 쓴다.
  */
 export const Horizontal: Story = {
   parameters: { controls: { disable: true } },
   render: () => (
     <Card
       orientation="horizontal"
+      bordered={false}
       image
+      className="gap-3"
+      imageClassName="size-24 overflow-hidden rounded-r-2xl"
+      contentClassName="gap-1 p-0"
+      metadataPosition="top"
       title="골목 끝 화덕 생선구이"
-      metadata={{ icon: 'calendar', text: '2026. 07. 28' }}
+      description="경기도 안산시 단원구 대부남동 산 129-3"
+      metadata={{ text: '2026. 07. 28' }}
+      metadataTrailing={
+        <IconButton
+          icon="more-vertical"
+          label="더보기"
+          size={32}
+          iconSize={16}
+          className="-my-2 -mr-2 text-text-subtle"
+        />
+      }
     />
   ),
 };
@@ -95,6 +113,43 @@ export const FluidImageArea: Story = {
         metadata={{ icon: 'home', text: '구로시장' }}
       />
     </div>
+  ),
+};
+
+/**
+ * `titleClassName` swaps the default 16px heading for another type style —
+ * the main-page poster grid uses `type-label-lg` (14px semibold).
+ */
+export const CompactTitle: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <Card
+      image
+      imageClassName="aspect-[13/11] w-full"
+      titleClassName="type-label-lg"
+      title="골목 끝 화덕 생선구이"
+      metadata={{ icon: 'home', text: '구로시장 · 도보 3분' }}
+    />
+  ),
+};
+
+/**
+ * 흰 배경 페이지에 얹는 플랫 포스터 스타일 — 테두리 없음(`bordered={false}`),
+ * 텍스트는 좌우 패딩 없이 사진 가장자리에 정렬(`contentClassName`), 주소는
+ * 아이콘 없이 텍스트만(`metadata.icon` 생략). 메인 페이지 그리드가 쓴다.
+ */
+export const FlatPoster: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <Card
+      bordered={false}
+      image
+      imageClassName="h-[154px] w-full overflow-hidden rounded-2xl"
+      titleClassName="type-label-lg"
+      contentClassName="gap-0 px-0 py-2"
+      title="골목 끝 화덕 생선구이"
+      metadata={{ text: '경기도 안산시' }}
+    />
   ),
 };
 

@@ -16,6 +16,11 @@ export interface BottomSheetProps extends React.ComponentPropsWithoutRef<'div'> 
   onClose?: () => void;
   /** `fixed` for app use, `absolute` to sit inside a sized preview frame. */
   position?: 'fixed' | 'absolute';
+  /**
+   * Header alignment. The select-panel sheets centre their header; the payment
+   * sheet (.pen `16 Payment Sheet`) left-aligns it — pass `start` for those.
+   */
+  align?: 'center' | 'start';
 }
 
 export function BottomSheet({
@@ -24,6 +29,7 @@ export function BottomSheet({
   children,
   onClose,
   position = 'fixed',
+  align = 'center',
   className,
   ...rest
 }: BottomSheetProps) {
@@ -50,10 +56,22 @@ export function BottomSheet({
         />
 
         {(title || description) && (
-          <div className="flex w-full flex-col items-center gap-2">
+          <div
+            className={cn(
+              'flex w-full flex-col gap-2',
+              align === 'start' ? 'items-start' : 'items-center',
+            )}
+          >
             {title && <h2 className="type-heading-sm text-text-default">{title}</h2>}
             {description && (
-              <p className="type-body-md w-full text-center text-text-secondary">{description}</p>
+              <p
+                className={cn(
+                  'type-body-md w-full text-text-secondary',
+                  align === 'center' && 'text-center',
+                )}
+              >
+                {description}
+              </p>
             )}
           </div>
         )}
