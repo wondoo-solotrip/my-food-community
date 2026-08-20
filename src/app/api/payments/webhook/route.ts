@@ -3,16 +3,17 @@ import { Webhook } from '@portone/server-sdk'
 
 import { createAdminClient } from '@/lib/supabase/admin'
 import { UUID_PATTERN } from '../../events/shared'
-import { verifyAndRecordPayment } from '../shared'
+import { verifyAndRecordCancel, verifyAndRecordPayment } from '../shared'
 
 /**
- * 포트원 결제 웹훅(BFF) — 규칙: rules/payment.md (SSOT).
+ * 포트원 결제·취소 웹훅(BFF) — 규칙: rules/payment.md (SSOT).
  *
- * 시그니처 검증(Webhook.verify)을 통과한 Transaction.Paid 이벤트만 처리한다.
- * 웹훅 body는 신뢰하지 않는다 — paymentId만 꺼내 완료 API와 공용 경로인
- * verifyAndRecordPayment로 포트원 단건 조회 재검증 후 원장에 기록한다.
- * 세션이 없는 서버 간 호출이라 service-role 클라이언트로 기록한다.
- * 취소(Transaction.Cancelled) 웹훅은 아직 미구현 — 무시한다.
+ * 시그니처 검증(Webhook.verify)을 통과한 Transaction.Paid(결제)·
+ * Transaction.Cancelled(전액 취소) 이벤트만 처리한다. 웹훅 body는 신뢰하지
+ * 않는다 — paymentId만 꺼내 각각 완료 API·취소 API와 공용 경로인
+ * verifyAndRecordPayment·verifyAndRecordCancel로 포트원 단건 조회 재검증 후
+ * insert-only로 원장에 기록한다. 세션이 없는 서버 간 호출이라 service-role
+ * 클라이언트로 기록한다.
  */
 export async function POST(request: Request) {
   const secret = process.env.PORTONE_V2_WEBHOOK_SECRET
@@ -41,9 +42,18 @@ export async function POST(request: Request) {
     throw e
   }
 
-  // 결제 승인 이벤트만 처리한다. 그 외(취소 포함)와 알 수 없는 타입은 에러 없이
+  // 부분 취소는 전액 환불 정책상 받지 않는 것이 정상이다 — 정책과 어긋난
+  // 신호이므로 로그만 남기고 200으로 끝낸다(재시도해도 같다).
+  if (webhook.type === 'Transaction.PartialCancelled') {
+    console.warn(
+      `[payments/webhook] 부분 취소 웹훅 수신 — 전액 환불 정책과 불일치 paymentId=${webhook.data.paymentId}`
+    )
+    return NextResponse.json({ ok: true, ignored: true })
+  }
+
+  // 결제 승인·전액 취소 이벤트만 처리한다. 그 외와 알 수 없는 타입은 에러 없이
   // 무시한다 — 포트원은 예고 없이 새 타입을 추가할 수 있다.
-  if (webhook.type !== 'Transaction.Paid') {
+  if (webhook.type !== 'Transaction.Paid' && webhook.type !== 'Transaction.Cancelled') {
     return NextResponse.json({ ok: true, ignored: true })
   }
 
@@ -55,7 +65,10 @@ export async function POST(request: Request) {
   }
 
   const supabase = createAdminClient()
-  const result = await verifyAndRecordPayment(supabase, paymentId, null)
+  const result =
+    webhook.type === 'Transaction.Paid'
+      ? await verifyAndRecordPayment(supabase, paymentId, null)
+      : await verifyAndRecordCancel(supabase, paymentId)
 
   if (result.ok) {
     return NextResponse.json({ ok: true }, { status: result.created ? 201 : 200 })

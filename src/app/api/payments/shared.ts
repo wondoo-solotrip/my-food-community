@@ -58,6 +58,54 @@ export async function getPortonePayment(
   }
 }
 
+export type PortoneCancelResult =
+  | { ok: true; alreadyCancelled: boolean }
+  | { ok: false; status: number; errorType?: string }
+
+/**
+ * 결제 취소 — `POST https://api.portone.io/payments/{paymentId}/cancel`.
+ * body에 `amount`를 넣지 않으면 전액 취소된다(부분 취소 금지 정책 —
+ * rules/payment.md). 이미 취소된 결제(`PAYMENT_ALREADY_CANCELLED`)는 성공으로
+ * 취급한다 — 호출부가 verifyAndRecordCancel로 이어가면 콘솔 수동 취소 등으로
+ * 원장이 비어 있던 경우도 메워진다.
+ */
+export async function cancelPortonePayment(
+  paymentId: string,
+  reason: string
+): Promise<PortoneCancelResult> {
+  try {
+    const response = await fetch(
+      `https://api.portone.io/payments/${encodeURIComponent(paymentId)}/cancel`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `PortOne ${process.env.PORTONE_V2_API_SECRET}`,
+          'Content-Type': 'application/json',
+        },
+        // 고객 요청 취소 표기. amount 생략 = 전액 취소.
+        body: JSON.stringify({ reason, requester: 'Customer' }),
+        cache: 'no-store',
+        signal: AbortSignal.timeout(10_000),
+      }
+    )
+    if (response.ok) return { ok: true, alreadyCancelled: false }
+
+    let errorType: string | undefined
+    try {
+      errorType = ((await response.json()) as { type?: string }).type
+    } catch {
+      // 본문이 없거나 JSON이 아니면 status로만 판단한다.
+    }
+    if (errorType === 'PAYMENT_ALREADY_CANCELLED') {
+      return { ok: true, alreadyCancelled: true }
+    }
+    return { ok: false, status: response.status, errorType }
+  } catch {
+    // 네트워크 오류·타임아웃 — 호출부가 502로 바꿔 응답한다.
+    return { ok: false, status: 0 }
+  }
+}
+
 const RECEIPT_COLUMNS =
   'id, created_at, amount, type, transaction_key, payment_snapshot(snapshot_product)'
 
@@ -264,4 +312,101 @@ export async function verifyAndRecordPayment(
       payment_snapshot: { snapshot_product: snapshotProduct },
     } as PaymentRowWithSnapshot),
   }
+}
+
+/** CANCEL 행이 물려받는 원 PAYMENT 행 컬럼. */
+interface CancelSourceRow {
+  amount: number | string
+  product_id: string
+  user_id: string
+  payment_snapshot_id: string
+}
+
+export type CancelRecordResult =
+  | { ok: true; created: boolean }
+  /** status ≥ 500은 일시 오류(재시도 의미 있음), 그 외는 영구 거절이다. */
+  | { ok: false; status: number; error: string }
+
+/**
+ * 취소 검증·기록 공용 경로 — 취소 API(/api/payments/[id]/cancel)와 취소 웹훅
+ * (Transaction.Cancelled)이 같은 검증을 거친다. 규칙: rules/payment.md (SSOT).
+ *
+ * 신뢰 입력은 paymentId(= 원장 transaction_key) 하나뿐 — 포트원 단건 조회로
+ * `CANCELLED`를 확인한 결제만 기록한다. CANCEL 행은 원 PAYMENT 행의 금액을
+ * −부호로 뒤집고 스냅샷·소유자를 재사용하며, 원 PAYMENT 행이 없으면 기록하지
+ * 않는다. 같은 paymentId의 취소가 이미 기록돼 있으면 created:false로 반환하는
+ * 멱등 함수다 — 중복 취소 기록은 여기와 (transaction_key, type) 유니크
+ * 인덱스(최후 방어선)가 막는다.
+ */
+export async function verifyAndRecordCancel(
+  supabase: SupabaseClient,
+  paymentId: string
+): Promise<CancelRecordResult> {
+  // 멱등 — 이미 CANCEL 행이 있으면(취소 API·웹훅 경합 포함) 그대로 성공.
+  const { data: existing, error: existingError } = await supabase
+    .from('payment')
+    .select('id')
+    .eq('transaction_key', paymentId)
+    .eq('type', 'CANCEL')
+    .maybeSingle()
+
+  if (existingError) {
+    return { ok: false, status: 500, error: '취소 내역을 확인하지 못했습니다.' }
+  }
+  if (existing) return { ok: true, created: false }
+
+  if (!process.env.PORTONE_V2_API_SECRET) {
+    return {
+      ok: false,
+      status: 500,
+      error: '결제 검증 설정이 없습니다. PORTONE_V2_API_SECRET을 설정해주세요.',
+    }
+  }
+
+  // 포트원 결제 단건 조회 — CANCELLED가 아니면 어떤 것도 기록하지 않는다.
+  // 전액 환불 정책이라 부분 취소 상태(PARTIAL_CANCELLED)도 거부한다.
+  const lookup = await getPortonePayment(paymentId)
+  if (!lookup.ok) {
+    if (lookup.status === 404) {
+      return { ok: false, status: 404, error: '결제 정보를 찾을 수 없습니다.' }
+    }
+    return { ok: false, status: 502, error: '결제 정보를 확인하지 못했습니다.' }
+  }
+  if (lookup.payment.status !== 'CANCELLED') {
+    return { ok: false, status: 409, error: '취소가 완료되지 않았어요.' }
+  }
+
+  // 원 PAYMENT 행 — 취소 금액·상품·소유자·스냅샷을 그대로 물려받는다.
+  const { data: source, error: sourceError } = await supabase
+    .from('payment')
+    .select('amount, product_id, user_id, payment_snapshot_id')
+    .eq('transaction_key', paymentId)
+    .eq('type', 'PAYMENT')
+    .maybeSingle()
+
+  if (sourceError) {
+    return { ok: false, status: 500, error: '결제 내역을 확인하지 못했습니다.' }
+  }
+  if (!source) {
+    return { ok: false, status: 404, error: '취소할 결제 내역이 없습니다.' }
+  }
+  const sourceRow = source as CancelSourceRow
+
+  // 부호 규칙: PAYMENT는 +, CANCEL은 − (rules/payment.md). 전액 환불만 지원한다.
+  const { error: cancelError } = await supabase.from('payment').insert({
+    transaction_key: paymentId,
+    type: 'CANCEL',
+    amount: -Math.abs(Number(sourceRow.amount)),
+    product_id: sourceRow.product_id,
+    user_id: sourceRow.user_id,
+    payment_snapshot_id: sourceRow.payment_snapshot_id,
+  })
+
+  if (cancelError) {
+    // 23505: (transaction_key, type) 유니크 위반 — 경합한 쪽이 먼저 기록했다.
+    if (cancelError.code === '23505') return { ok: true, created: false }
+    return { ok: false, status: 500, error: '취소 기록에 실패했습니다.' }
+  }
+
+  return { ok: true, created: true }
 }

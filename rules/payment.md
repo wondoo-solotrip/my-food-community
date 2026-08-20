@@ -100,7 +100,7 @@
 8. 스냅샷 insert → 원장 insert(`amount` +). 23505면 기존 행을 읽어 멱등 반환.
 
 검증 실패 시 기록하지 않는다. **이미 승인된 결제가 2~7에서 거절되면 환불이
-필요하다** — 취소 API 미연동이므로 콘솔에서 수동 취소한다.
+필요하다** — 자동 환불은 미구현(알려진 한계)이라 콘솔에서 수동 취소한다.
 
 ## 웹훅 (`POST /api/payments/webhook`)
 
@@ -110,8 +110,10 @@
   `verifyAndRecordPayment`로 단건 조회 재검증 후 기록한다.
 - `transaction_key` = 웹훅의 `paymentId`. UUID 형식이 아니면 우리 주문이 아니다
   — 무시(200).
-- **타입 처리**: `Transaction.Paid`만 기록한다. 그 외·알 수 없는 타입은 에러
-  없이 200으로 무시한다(포트원은 예고 없이 타입을 추가할 수 있다).
+- **타입 처리**: `Transaction.Paid`는 결제 기록(`verifyAndRecordPayment`),
+  `Transaction.Cancelled`는 취소 기록(`verifyAndRecordCancel`) 경로를 탄다.
+  그 외·알 수 없는 타입은 에러 없이 200으로 무시한다(포트원은 예고 없이
+  타입을 추가할 수 있다).
 - **응답 정책**: 일시 오류(DB·포트원 API 장애)만 5xx로 응답해 포트원 재전송
   (최대 5회, exponential backoff)을 유도한다. 검증 거절(금액 불일치·정원 초과
   등)은 재시도해도 같으므로 200 + 로그로 종료한다 — 승인된 결제라면 수동 환불
@@ -122,13 +124,14 @@
   버전 [결제모듈 V2] · 최신 스키마(2024-04-25).
 - 완료 API와 웹훅이 경합해도 안전하다 — 멱등 + `(transaction_key, type)` 유니크.
 
-### 취소 웹훅 (추후 구현 시 — 동일 규칙 적용)
+### 취소 웹훅 (`Transaction.Cancelled`)
 
 - 같은 엔드포인트에서 `Transaction.Cancelled`를 처리한다(부분 취소
   `Transaction.PartialCancelled`는 전액 환불 정책상 받지 않는 것이 정상 — 수신
   시 로그 후 200).
 - 처리 규칙은 결제 웹훅과 동일: 시그니처 검증 → 단건 조회로 상태
-  (`CANCELLED`) 재검증 → insert-only로 `type='CANCEL'` 행 추가.
+  (`CANCELLED`) 재검증 → insert-only로 `type='CANCEL'` 행 추가. 구현은 취소
+  API와 공용 경로인 `verifyAndRecordCancel`(`src/app/api/payments/shared.ts`).
 - `transaction_key`는 웹훅의 `paymentId` 그대로 — 원 PAYMENT 행과 같은 키로
   묶는다. 원 PAYMENT 행이 없으면 기록하지 않는다.
 - **`amount`는 −부호**(원 결제 금액의 음수, 전액).
@@ -136,14 +139,25 @@
 - service-role 클라이언트로 기록하고, 스냅샷은 원 PAYMENT 행의
   `payment_snapshot_id`를 재사용한다.
 
-## 결제 취소 (사용자 취소 · 원장만 구현, 포트원 연동 TODO)
+## 결제 취소 (사용자 취소 · 포트원 연동)
 
-- `POST /api/payments/[id]/cancel`은 원장에 CANCEL 행(`amount` −)만 남긴다
-  (전액 환불 목업). 모임 시작 후에는 취소 불가.
-- **포트원 취소 연동 시(TODO)**: 원장 기록 **전에**
-  `POST https://api.portone.io/payments/{paymentId}/cancel`(PortOne 인증 스킴,
-  body `{ reason }`)이 성공해야 한다. `paymentId` = `transaction_key`. 실패하면
+구현 위치: `src/app/api/payments/[id]/cancel/route.ts`(+ 공용 경로
+`src/app/api/payments/shared.ts`의 `cancelPortonePayment`·`verifyAndRecordCancel`),
+마이페이지 결제·취소 내역 `GET /api/my/payments` + `src/app/my/my-view.tsx`.
+
+- `POST /api/payments/[id]/cancel` — `[id]`는 원장 PAYMENT 행 id. RLS로 본인
+  결제만 취소할 수 있다. 모임 시작 후에는 취소 불가. 이미 CANCEL 행이 있으면
+  포트원 호출 없이 409로 끝낸다.
+- 원장 기록 **전에** `POST https://api.portone.io/payments/{paymentId}/cancel`
+  (PortOne 인증 스킴, body `{ reason, requester: 'Customer' }` — `amount` 생략
+  = 전액 취소)이 성공해야 한다. `paymentId` = `transaction_key`. 실패하면
   기록하지 않는다.
+- 이미 취소된 결제(409 `PAYMENT_ALREADY_CANCELLED`)는 성공으로 취급하고 기록
+  경로로 진행한다 — 콘솔 수동 취소 등으로 원장이 비어 있으면 여기서 메워진다.
+- 기록은 취소 웹훅과 공용 경로 `verifyAndRecordCancel` — 포트원 단건 조회로
+  `CANCELLED`를 재검증한 뒤 CANCEL 행(`amount` −, 원 PAYMENT 행의 스냅샷
+  재사용)을 insert-only로 남긴다. 멱등이라 취소 웹훅과 경합해도 안전하다.
+  취소 성공 후 기록이 일시 오류로 실패해도 취소 웹훅이 원장을 채운다.
 - 정책: 전액 환불만 지원(부분 취소 금지).
 
 ## 금지 사항
@@ -165,7 +179,8 @@
 - **심층 방어** — 원장 INSERT가 authenticated RLS로도 열려 있어 검증 로직이
   BFF 계층에만 있다. 쓰기를 service-role로 통일하고 authenticated INSERT
   정책 제거를 검토한다.
-- **자동 환불** — 승인 후 검증 거절 케이스의 포트원 취소 API 자동 호출.
+- **자동 환불** — 승인 후 검증 거절 케이스에서 `cancelPortonePayment` 자동
+  호출은 미연동 — 콘솔에서 수동 취소한다.
 
 ## 테스트
 

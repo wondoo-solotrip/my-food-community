@@ -4,13 +4,15 @@
  * 05 My Page — design.pen `05 My Page` + `12–14 My Page` 탭 3종.
  *
  * Profile summary card, 내가 쓴 글·결제 내역·취소 내역 탭(12–14), and the
- * logout action above the bottom navigation. 결제 내역 카드의 결제 취소는
- * `POST /api/payments/[id]/cancel`로 취소 원장을 남기고 목록을 다시 읽는다.
+ * logout action above the bottom navigation. 결제·취소 내역은
+ * `GET /api/my/payments`가 원장 스냅샷 기준으로 내려주고, 결제 취소는
+ * `POST /api/payments/[id]/cancel`(BFF가 포트원 취소 후 취소 원장 기록)
+ * 성공 시 목록을 다시 읽어 결제 내역 → 취소 내역으로 옮긴다.
  */
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useCallback, useEffect, useState } from 'react';
 
 import {
   BottomSheet,
@@ -21,6 +23,7 @@ import {
   IconButton,
   Skeleton,
   TabNavigation,
+  Toast,
 } from '@/components';
 import type { CanceledHistoryItem, PaymentHistoryItem } from '@/lib/events';
 import type { PlaceSummary } from '@/lib/places';
@@ -56,46 +59,6 @@ function formatDate(iso: string): string {
 /** design.pen 12–14 — 마이페이지 탭 순서. `/my?tab=` 딥링크와 인덱스를 공유한다. */
 const TABS = ['내가 쓴 글', '결제 내역', '취소 내역'];
 
-/** 수업용 하드코딩 목업 — DB 없이 결제·취소 내역을 보여준다. */
-const MOCK_PAYMENTS: PaymentHistoryItem[] = [
-  {
-    id: '2f6f9b70-93a1-4a54-9b9e-1f30a4d20001',
-    amount: 30000,
-    paidAt: '2026-08-13T21:04:00+09:00',
-    eventName: '8월 구로 미식 모임',
-    eventAt: '2026-08-29T19:30:00+09:00',
-    eventAddress: '구로시장 키친',
-    imageUrl: '/images/guro-table-dinner.png',
-  },
-  {
-    id: '2f6f9b70-93a1-4a54-9b9e-1f30a4d20003',
-    amount: 25000,
-    paidAt: '2026-08-10T18:12:00+09:00',
-    eventName: '9월 문래 골목 미식회',
-    eventAt: '2026-09-12T19:00:00+09:00',
-    eventAddress: '문래동 철공소 키친',
-    imageUrl: '/images/kalguksu.png',
-  },
-  {
-    id: '2f6f9b70-93a1-4a54-9b9e-1f30a4d20004',
-    amount: 40000,
-    paidAt: '2026-08-05T09:40:00+09:00',
-    eventName: '10월 오류동 김장 클래스',
-    eventAt: '2026-10-17T11:00:00+09:00',
-    eventAddress: '오류동 공유 부엌',
-    imageUrl: '/images/bamil-cafe.png',
-  },
-];
-
-const MOCK_CANCELED: CanceledHistoryItem[] = [
-  {
-    id: '2f6f9b70-93a1-4a54-9b9e-1f30a4d20002',
-    amount: 25000,
-    canceledAt: '2026-07-18T10:32:00+09:00',
-    eventName: '7월 동네 식탁 이야기',
-  },
-];
-
 export interface MyViewProps {
   /** `/my?tab=payments` 같은 딥링크가 정하는 시작 탭. 기본은 내가 쓴 글. */
   initialTab?: number;
@@ -125,23 +88,36 @@ export function MyView({
   const [tab, setTab] = useState(initialTab);
   // null이면 아직 불러오는 중이다.
   const [places, setPlaces] = useState<PlaceSummary[] | null>(initialPlaces ?? null);
-  // 결제·취소 내역은 수업용 하드코딩 목업이다(서버 페칭 없음). null이면 로딩 중 —
-  // 목업이어도 각 탭을 "처음 여는 시점"에 로딩을 잠깐 흉내 내 스켈레톤을 보여준다.
-  // 두 내역은 서로 다른 데이터라 로딩 상태도 탭별로 독립이다.
+  // 결제·취소 내역 — GET /api/my/payments 한 번으로 두 탭을 채운다. null이면
+  // 로딩 중이다.
   const [payments, setPayments] = useState<PaymentHistoryItem[] | null>(initialPayments ?? null);
   const [canceled, setCanceled] = useState<CanceledHistoryItem[] | null>(initialCanceled ?? null);
+  // 취소 요청이 진행 중인 결제 id — 해당 카드의 취소 버튼을 잠근다.
+  const [cancelingId, setCancelingId] = useState<string | null>(null);
+  const [toast, setToast] = useState<string | null>(null);
+
+  // 마운트 시와 결제 취소 성공 후에 서버 원장 기준으로 두 탭을 다시 채운다.
+  const loadPayments = useCallback(() => {
+    return fetch('/api/my/payments')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data) {
+          setPayments(data.payments ?? []);
+          setCanceled(data.canceled ?? []);
+        }
+      })
+      .catch(() => {
+        // API가 없는 환경(Storybook)에서는 주입된 내역을 유지한다.
+      })
+      .finally(() => {
+        setPayments((prev) => prev ?? []);
+        setCanceled((prev) => prev ?? []);
+      });
+  }, []);
 
   useEffect(() => {
-    if (tab !== 1 || payments !== null) return;
-    const timer = setTimeout(() => setPayments(MOCK_PAYMENTS), 600);
-    return () => clearTimeout(timer);
-  }, [tab, payments]);
-
-  useEffect(() => {
-    if (tab !== 2 || canceled !== null) return;
-    const timer = setTimeout(() => setCanceled(MOCK_CANCELED), 600);
-    return () => clearTimeout(timer);
-  }, [tab, canceled]);
+    void loadPayments();
+  }, [loadPayments]);
   const [deletingId, setDeletingId] = useState<string | null>(null);
   // ⋮ 더보기로 연 글 관리 바텀시트의 대상 글. null이면 닫힘.
   const [actionPlace, setActionPlace] = useState<PlaceSummary | null>(null);
@@ -213,19 +189,23 @@ export function MyView({
     }
   };
 
-  // 결제 취소 — 수업용 목업: 서버 없이 로컬 상태에서 결제를 취소 내역으로 옮긴다.
-  // 취소 내역이 아직 안 열려 봤다면(null) 기본 목업 위에 얹어 로드된 것으로 친다.
-  const handleCancelPayment = (payment: PaymentHistoryItem) => {
-    setPayments((prev) => prev?.filter((item) => item.id !== payment.id) ?? prev);
-    setCanceled((prev) => [
-      {
-        id: payment.id,
-        amount: payment.amount,
-        canceledAt: new Date().toISOString(),
-        eventName: payment.eventName,
-      },
-      ...(prev ?? MOCK_CANCELED),
-    ]);
+  // 결제 취소 — BFF가 포트원 결제 취소 후 취소 원장을 남긴다. 성공하면 서버
+  // 원장 기준으로 두 탭을 다시 읽어 결제 내역 → 취소 내역으로 옮긴다.
+  const handleCancelPayment = async (payment: PaymentHistoryItem) => {
+    setCancelingId(payment.id);
+    try {
+      const res = await fetch(`/api/payments/${payment.id}/cancel`, { method: 'POST' });
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        setToast(data?.error ?? '결제 취소에 실패했습니다.');
+        return;
+      }
+      await loadPayments();
+    } catch {
+      setToast('결제 취소에 실패했습니다.');
+    } finally {
+      setCancelingId(null);
+    }
   };
 
   return (
@@ -406,6 +386,9 @@ export function MyView({
 
         {tab === 1 && (
           <section className="flex flex-col gap-4">
+            {/* 결제 취소 실패 안내 — place-form과 같은 섹션 상단 인라인 토스트. */}
+            {toast && <Toast type="error" message={toast} onClose={() => setToast(null)} />}
+
             <div className="flex items-center justify-between">
               <h2 className="type-heading-sm text-text-default">참여 예정 모임</h2>
               {payments !== null && (
@@ -463,7 +446,11 @@ export function MyView({
                     {index > 0 && (
                       <div aria-hidden className="-mx-4 h-2.5 bg-background-subtle md:hidden" />
                     )}
-                    <PaymentHistoryCard payment={payment} onCancel={handleCancelPayment} />
+                    <PaymentHistoryCard
+                      payment={payment}
+                      canceling={cancelingId === payment.id}
+                      onCancel={handleCancelPayment}
+                    />
                   </Fragment>
                 ))}
               </div>
